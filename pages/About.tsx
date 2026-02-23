@@ -12,23 +12,23 @@ export const About: React.FC = () => {
         {/* Philosophy Section */}
         <div className="max-w-5xl mb-24">
              <h1 className="font-display text-4xl md:text-5xl font-bold text-white mb-10">
-               Clarity reduces risk. Discipline protects margin.
+               Clear scope. Clear systems. Better decisions.
              </h1>
              <div className="space-y-6 text-structural leading-relaxed text-lg">
                <p>
-                 ClearBuild Consulting was founded on a simple premise: projects and businesses rarely struggle because people lack effort. They struggle because processes are unclear, overcomplicated or poorly defined from the outset.
+                 ClearBuild Consulting was founded on a simple principle: most projects and businesses do not struggle because people lack effort. They struggle because things are unclear from the start.
                </p>
                <p>
-                 In construction, that shows up as scope gaps and cost overruns. In small businesses, it shows up as manual workarounds, duplicated effort and systems that do not quite join up.
+                 In construction, that shows up as scope gaps, disputes and cost overruns. In small businesses, it shows up as repeated admin, workarounds and software that does not quite join up.
                </p>
                <p>
-                 Early assumptions compound. Unclear or overly complex processes create pain that compounds into cost. Small inefficiencies repeated across a business become material over time.
+                 Small inefficiencies build up quietly. Jobs get passed around. Processes live in people’s heads. New tools are added before the basics are fixed.
                </p>
                <p>
-                 We take a senior, measured approach to operational problems. Whether mapping an AI opportunity roadmap or defining a domestic scope of works, the principle is consistent: clarity reduces risk and disciplined process design protects margin.
+                 Over time, that costs money.
                </p>
                <p>
-                 The focus is practical. Plain English. Defined scope. Clear assumptions. A proper understanding of how work actually happens before introducing automation or new tooling.
+                 Whether defining a domestic scope of works or reviewing how a business operates, the approach is the same. Get clear first. Make sensible decisions. Introduce change only where it genuinely improves outcomes.
                </p>
              </div>
         </div>
@@ -40,12 +40,12 @@ export const About: React.FC = () => {
              <div className="sticky top-24 max-w-sm w-full">
                <div className="bg-surface border border-white/10 rounded-sm p-2 aspect-[3/4] flex flex-col">
                   <div className="flex-grow bg-obsidian flex items-center justify-center border border-dashed border-white/10 overflow-hidden">
-  <img
-    src={mikePhoto}
-    alt="Mike Anderson"
-    className="w-full h-full object-cover"
-  />
-</div>
+                    <img
+                      src={mikePhoto}
+                      alt="Mike Anderson"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                   <div className="mt-4 text-center pb-2">
                     <span className="block text-white font-display font-bold text-lg">Mike Anderson</span>
                     <span className="block text-structural text-sm">Founder & Principal Consultant</span>
@@ -70,28 +70,31 @@ export const About: React.FC = () => {
              </h2>
              <div className="space-y-6 text-structural leading-relaxed text-lg">
                <p>
-                 I’ve spent over 20 years delivering complex civil engineering and infrastructure programmes in regulated, high-governance environments. My work has involved leading multidisciplinary teams, defining scope clearly, managing commercial risk and producing documentation that must withstand detailed scrutiny.
+                 I have spent over 20 years delivering major civil engineering and infrastructure projects where mistakes are expensive and decisions are scrutinised. The work involved leading specialist teams, defining scope clearly and managing cost and risk in high-pressure environments.
                </p>
                <p>
-                 That background shapes how I approach every engagement.
+                 That background shaped how I approach every engagement.
                </p>
                <p className="text-white/90 font-medium">
-                 Scope clarity. Structured decision making. Version control. Defensible reasoning. Practical governance.
+                 Clear scope. Structured decisions. Proper documentation. Practical control.
                </p>
                <p>
-                 These are not abstract management concepts. They are the disciplines required to deliver complex work without drift.
+                 These are not corporate buzzwords. They are the basics that stop projects drifting and businesses wasting time.
                </p>
                <p>
-                 I started ClearBuild to apply that same rigour to smaller organisations and individual clients who rarely have access to it. In growing businesses, inefficiencies often sit in plain sight. Processes evolve informally. Responsibilities blur. Automation is introduced before structure.
+                 I started ClearBuild to bring that same level of structure to smaller organisations and homeowners who rarely get access to it.
                </p>
                <p>
-                 Whether I am helping a business owner understand where AI can genuinely improve operations, implementing a defined automation, or helping a homeowner obtain like-for-like builder quotations, the underlying discipline is the same.
+                 For some clients, that means reviewing how their business actually works before introducing AI or automation. For others, it means producing a clear, detailed tender pack so builders are pricing the same job.
                </p>
                <p>
-                 Define properly before committing time or capital.
+                 The principle is consistent.
+               </p>
+               <p className="text-white/90 font-medium">
+                 Define properly before committing time or money.
                </p>
                <p>
-                 I do not over-promise. I do not take on work that is not commercially justified. My role is to give you a clear, structured view of where you are and what a sensible next step looks like.
+                 I will not sell you something you do not need. If an idea does not make commercial sense, I will say so. My role is to give you a clear view of where you are and what a sensible next step looks like.
                </p>
              </div>
           </div>
@@ -108,27 +111,27 @@ export const About: React.FC = () => {
                 20+
               </span>
               <p className="text-structural text-lg font-light leading-relaxed">
-                Years delivering complex programmes
+                Years solving complex delivery problems
               </p>
             </div>
 
             {/* Column 2 */}
             <div>
               <h3 className="font-display text-3xl font-bold text-white mb-6 leading-tight">
-                Commercial risk management
+                Cost and risk control
               </h3>
               <p className="text-structural text-lg font-light leading-relaxed">
-                Structured scope, change and margin control
+                Clear scope, controlled change and margin protection
               </p>
             </div>
 
             {/* Column 3 */}
             <div>
               <h3 className="font-display text-3xl font-bold text-white mb-6 leading-tight">
-                Process & governance discipline
+                Clear systems and decision discipline
               </h3>
               <p className="text-structural text-lg font-light leading-relaxed">
-                Evidence-led decision making and delivery
+                Practical, evidence-based delivery
               </p>
             </div>
 
