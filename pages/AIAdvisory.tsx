@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from '../components/Button';
 import { Link } from 'react-router-dom';
-import { Search, Lightbulb, Map, Hammer, CheckCircle, ChevronDown, ChevronUp } from 'lucide-react';
+import { Search, Lightbulb, Map, Hammer, CheckCircle, ChevronDown, ChevronUp, ArrowRight } from 'lucide-react';
 
 export const AIAdvisory: React.FC = () => {
   return (
@@ -25,6 +25,16 @@ export const AIAdvisory: React.FC = () => {
                A short, structured conversation to understand your situation and see how we can help.
              </span>
           </div>
+          <p className="mt-6 text-sm font-semibold text-white/70 uppercase tracking-widest">
+            See how the AI Audit works below
+          </p>
+          <p className="mt-8 text-sm text-structural">
+            Want the detail upfront?{' '}
+            <a href="/clearbuild-capability-pack.html" target="_blank" rel="noopener noreferrer"
+               className="text-white font-medium underline underline-offset-4 hover:text-focus transition-colors">
+              Read our Capability Pack
+            </a>
+          </p>
         </div>
 
         {/* 2. Process Diagram Section */}
