@@ -4,8 +4,14 @@ import { Link } from 'react-router-dom';
 import { Search, Lightbulb, Map, Hammer, CheckCircle, ChevronDown, ChevronUp, ArrowRight } from 'lucide-react';
 import { Seo } from '../components/Seo';
 import { Section, Container, Eyebrow, Reveal } from '../components/primitives';
+import { useInView } from '../hooks/useInView';
+import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
 
 export const AIAdvisory: React.FC = () => {
+  const prefersReduced = usePrefersReducedMotion();
+  const { ref: lineRef, inView: lineDrawn } = useInView<HTMLDivElement>({ threshold: 0.3, once: true });
+  const drawn = lineDrawn || prefersReduced;
+
   return (
     <div className="bg-obsidian min-h-screen">
       <Seo
@@ -19,7 +25,7 @@ export const AIAdvisory: React.FC = () => {
         {/* 1. Hero Section */}
         <Reveal className="max-w-4xl mb-24">
           <Eyebrow className="text-focus mb-4">Primary Service</Eyebrow>
-          <h1 className="font-display text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+          <h1 className="font-display text-display-lg font-extrabold text-white mb-6">
             Practical AI advisory for growing businesses.
           </h1>
           <p className="text-xl text-structural leading-relaxed mb-10 max-w-2xl font-light">
@@ -47,9 +53,15 @@ export const AIAdvisory: React.FC = () => {
 
         {/* 2. Process Diagram Section */}
         <Reveal className="mb-32">
-          <div className="relative">
-            {/* Connector Line (Desktop) */}
-            <div className="hidden lg:block absolute top-12 left-[12%] right-[12%] h-px bg-white/10 border-t border-dashed border-white/10"></div>
+          <div className="relative" ref={lineRef}>
+            {/* Connector line (desktop): draws itself in on scroll. */}
+            <div
+              className="hidden lg:block absolute top-12 left-[12%] right-[12%] h-px bg-focus origin-left"
+              style={{
+                transform: drawn ? 'scaleX(1)' : 'scaleX(0)',
+                transition: prefersReduced ? undefined : 'transform 1.4s cubic-bezier(0.16, 1, 0.3, 1)',
+              }}
+            ></div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
               
@@ -110,7 +122,7 @@ export const AIAdvisory: React.FC = () => {
             
             {/* Left Column: Deliverables */}
             <div>
-                <h2 className="font-display text-3xl font-bold text-white mb-6">What the audit produces</h2>
+                <h2 className="font-display text-display-md font-bold text-white mb-6">What the audit produces</h2>
                 <p className="text-xl text-structural mb-8 font-light">
                     This is a structured engagement, not an open-ended discussion. At the end of the discovery and analysis phase, you receive a written report containing:
                 </p>
@@ -164,7 +176,7 @@ export const AIAdvisory: React.FC = () => {
 
         {/* 4. Engagement Model */}
         <Reveal className="max-w-4xl mx-auto mb-32 text-center">
-            <h2 className="font-display text-3xl font-bold text-white mb-10">Engagement Model</h2>
+            <h2 className="font-display text-display-md font-bold text-white mb-10">Engagement Model</h2>
             <div className="bg-obsidian border border-white/10 p-8 md:p-12 rounded-sm inline-block w-full text-left">
                <div className="flex justify-center">
                    <ul className="space-y-4">
@@ -195,7 +207,7 @@ export const AIAdvisory: React.FC = () => {
 
         {/* 5. Call to Action */}
         <Reveal className="bg-surface border border-white/5 p-12 rounded-sm text-center max-w-4xl mx-auto mb-32">
-          <h2 className="font-display text-3xl font-bold text-white mb-6">Ready to remove the ambiguity?</h2>
+          <h2 className="font-display text-display-md font-bold text-white mb-6">Ready to remove the ambiguity?</h2>
           <p className="text-structural text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
             Start with a structured assessment of where you are today and what a sensible next step looks like. No pitch. Just clarity.
           </p>
