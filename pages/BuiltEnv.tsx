@@ -2,11 +2,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '../components/Button';
 import { ShieldCheck, FileSearch, Scale, BookOpen, Clock, Calendar, AlertTriangle, Briefcase } from 'lucide-react';
+import { Seo } from '../components/Seo';
 
 export const BuiltEnv: React.FC = () => {
   return (
     <div className="bg-obsidian min-h-screen">
-      
+      <Seo
+        title="Built Environment Advisory"
+        description="Independent, senior advisory for complex construction and infrastructure programmes: project review, procurement and commercial guidance, governance and early-stage definition."
+        path="/built-environment"
+      />
+
       {/* 1. Hero Section */}
       <section className="pt-32 pb-20 border-b border-white/5">
         <div className="container mx-auto px-6 max-w-5xl">

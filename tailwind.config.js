@@ -17,7 +17,8 @@ export default {
         surface: '#0f172a', // Slate-900 for cards/sections
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        sans: ['DM Sans', 'sans-serif'],
+        mono: ['DM Mono', 'monospace'],
         display: ['Manrope', 'sans-serif'],
       },
       container: {

@@ -2,10 +2,16 @@ import React, { useState } from 'react';
 import { Button } from '../components/Button';
 import { Link } from 'react-router-dom';
 import { Search, Lightbulb, Map, Hammer, CheckCircle, ChevronDown, ChevronUp, ArrowRight } from 'lucide-react';
+import { Seo } from '../components/Seo';
 
 export const AIAdvisory: React.FC = () => {
   return (
     <div className="bg-obsidian min-h-screen pt-24 pb-24">
+      <Seo
+        title="AI Advisory"
+        description="Practical AI consultancy for UK SMEs. We map how your operations run, identify where AI delivers measurable improvement, and implement with discipline. Book an AI readiness review."
+        path="/ai-advisory"
+      />
       <div className="container mx-auto px-6">
         
         {/* 1. Hero Section */}

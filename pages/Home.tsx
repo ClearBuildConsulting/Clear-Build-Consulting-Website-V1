@@ -2,16 +2,23 @@ import React from 'react';
 import { Button } from '../components/Button';
 import { Link } from 'react-router-dom';
 import { ArrowRight, FileText, BrainCircuit, Building2 } from 'lucide-react';
+import { Seo } from '../components/Seo';
+import { Section, Container, Card, Reveal } from '../components/primitives';
 
 export const Home: React.FC = () => {
   return (
     <div className="bg-obsidian min-h-screen">
+      <Seo
+        title="AI and Construction Consultancy"
+        description="Clear Build Consulting helps small and mid sized businesses understand how their operations run, identify where AI delivers measurable improvement, and implement with discipline. Senior built environment advisory alongside."
+        path="/"
+      />
 
       {/* Hero Section */}
-      <section className="pt-24 pb-20 border-b border-white/5">
-        <div className="container mx-auto px-6">
+      <Section spacing="none" dividerBottom className="pt-24 pb-20">
+        <Container>
           <div className="flex flex-col lg:flex-row gap-16 items-start">
-            <div className="lg:w-2/3">
+            <Reveal className="lg:w-2/3">
               <h1 className="font-display text-5xl md:text-6xl font-bold leading-tight text-white mb-8">
                 Clear, actionable advice.
               </h1>
@@ -41,78 +48,86 @@ export const Home: React.FC = () => {
                   <Button variant="outline">See how the AI audit works</Button>
                 </Link>
               </div>
-            </div>
+            </Reveal>
           </div>
-        </div>
-      </section>
+        </Container>
+      </Section>
 
 
       {/* Services Section */}
-      <section className="py-24">
-        <div className="container mx-auto px-6">
-          <h2 className="font-display text-3xl font-bold mb-16 text-white">
-            Our Expertise
-          </h2>
+      <Section>
+        <Container>
+          <Reveal>
+            <h2 className="font-display text-3xl font-bold mb-16 text-white">
+              Our Expertise
+            </h2>
+          </Reveal>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
             {/* AI Advisory */}
-            <div className="bg-surface p-8 border border-focus/30 rounded-sm hover:border-focus transition-colors duration-300 group">
-              <div className="w-12 h-12 bg-obsidian border border-white/10 flex items-center justify-center mb-6 text-focus">
-                <BrainCircuit size={24} />
-              </div>
-              <h3 className="font-display text-xl font-bold text-white mb-4 group-hover:text-focus transition-colors">
-                AI Advisory
-              </h3>
-              <p className="text-structural text-sm leading-relaxed mb-8">
-                Identify friction, improve decision-making, and implement automation where it matters.
-                We map your reality before suggesting tools.
-              </p>
-              <Link to="/ai-advisory" className="inline-flex items-center text-sm font-bold text-white hover:text-focus transition-colors">
-                Explore Advisory <ArrowRight size={16} className="ml-2" />
-              </Link>
-            </div>
+            <Reveal>
+              <Card accent className="group">
+                <div className="w-12 h-12 bg-obsidian border border-white/10 flex items-center justify-center mb-6 text-focus">
+                  <BrainCircuit size={24} />
+                </div>
+                <h3 className="font-display text-xl font-bold text-white mb-4 group-hover:text-focus transition-colors">
+                  AI Advisory
+                </h3>
+                <p className="text-structural text-sm leading-relaxed mb-8">
+                  Identify friction, improve decision-making, and implement automation where it matters.
+                  We map your reality before suggesting tools.
+                </p>
+                <Link to="/ai-advisory" className="inline-flex items-center text-sm font-bold text-white hover:text-focus transition-colors">
+                  Explore Advisory <ArrowRight size={16} className="ml-2" />
+                </Link>
+              </Card>
+            </Reveal>
 
             {/* Domestic Tender Packs */}
-            <div className="bg-surface p-8 border border-white/5 rounded-sm hover:border-white/20 transition-colors duration-300">
-              <div className="w-12 h-12 bg-obsidian border border-white/10 flex items-center justify-center mb-6 text-structural">
-                <FileText size={24} />
-              </div>
-              <h3 className="font-display text-xl font-bold text-white mb-4">
-                Domestic Tender Packs
-              </h3>
-              <p className="text-structural text-sm leading-relaxed mb-8">
-                Structured documentation for homeowners. Get like-for-like quotes with clear scopes and specifications. Fixed price.
-              </p>
-              <Link to="/domestic-tender-packs" className="inline-flex items-center text-sm font-bold text-white hover:text-structural transition-colors">
-                View Service <ArrowRight size={16} className="ml-2" />
-              </Link>
-            </div>
+            <Reveal delay={70}>
+              <Card>
+                <div className="w-12 h-12 bg-obsidian border border-white/10 flex items-center justify-center mb-6 text-structural">
+                  <FileText size={24} />
+                </div>
+                <h3 className="font-display text-xl font-bold text-white mb-4">
+                  Domestic Tender Packs
+                </h3>
+                <p className="text-structural text-sm leading-relaxed mb-8">
+                  Structured documentation for homeowners. Get like-for-like quotes with clear scopes and specifications. Fixed price.
+                </p>
+                <Link to="/domestic-tender-packs" className="inline-flex items-center text-sm font-bold text-white hover:text-structural transition-colors">
+                  View Service <ArrowRight size={16} className="ml-2" />
+                </Link>
+              </Card>
+            </Reveal>
 
             {/* Built Environment */}
-            <div className="bg-surface p-8 border border-white/5 rounded-sm hover:border-white/20 transition-colors duration-300">
-              <div className="w-12 h-12 bg-obsidian border border-white/10 flex items-center justify-center mb-6 text-structural">
-                <Building2 size={24} />
-              </div>
-              <h3 className="font-display text-xl font-bold text-white mb-4">
-                Built Environment Advisory
-              </h3>
-              <p className="text-structural text-sm leading-relaxed mb-8">
-                Senior, selective advisory for complex infrastructure.
-              </p>
-              <Link to="/built-environment" className="inline-flex items-center text-sm font-bold text-white hover:text-structural transition-colors">
-                View Details <ArrowRight size={16} className="ml-2" />
-              </Link>
-            </div>
+            <Reveal delay={140}>
+              <Card>
+                <div className="w-12 h-12 bg-obsidian border border-white/10 flex items-center justify-center mb-6 text-structural">
+                  <Building2 size={24} />
+                </div>
+                <h3 className="font-display text-xl font-bold text-white mb-4">
+                  Built Environment Advisory
+                </h3>
+                <p className="text-structural text-sm leading-relaxed mb-8">
+                  Senior, selective advisory for complex infrastructure.
+                </p>
+                <Link to="/built-environment" className="inline-flex items-center text-sm font-bold text-white hover:text-structural transition-colors">
+                  View Details <ArrowRight size={16} className="ml-2" />
+                </Link>
+              </Card>
+            </Reveal>
 
           </div>
-        </div>
-      </section>
+        </Container>
+      </Section>
 
 
       {/* Professional Endorsements */}
-      <section className="py-12 border-t border-white/5 overflow-hidden">
-        <div className="container mx-auto px-6">
+      <Section spacing="tight" dividerTop className="overflow-hidden">
+        <Container>
           <h2 className="font-display text-2xl font-bold mb-8 text-white">
             Professional endorsements
           </h2>
@@ -170,25 +185,25 @@ export const Home: React.FC = () => {
             </div>
 
           </div>
-        </div>
-      </section>
+        </Container>
+      </Section>
 
 
       {/* Proof / Trust */}
-      <section className="py-24 border-t border-white/5">
-        <div className="container mx-auto px-6">
+      <Section dividerTop>
+        <Container>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
 
-            <div>
+            <Reveal>
               <h2 className="font-display text-3xl font-bold text-white mb-6">
                 Grounded in delivery.
               </h2>
               <p className="text-structural leading-relaxed">
-                ClearBuild is led by a senior project manager with over 20 years’ experience delivering complex civil engineering projects.
+                Clear Build is led by a senior project manager with over 20 years’ experience delivering complex civil engineering projects.
               </p>
-            </div>
+            </Reveal>
 
-            <div className="space-y-6">
+            <Reveal delay={70} className="space-y-6">
               <p className="text-structural">
                 <strong className="text-white">Outcome-led.</strong> We focus on time saved and risk reduced.
               </p>
@@ -198,11 +213,11 @@ export const Home: React.FC = () => {
               <p className="text-structural">
                 <strong className="text-white">Credibility first.</strong> If we aren’t the right fit, we say so.
               </p>
-            </div>
+            </Reveal>
 
           </div>
-        </div>
-      </section>
+        </Container>
+      </Section>
 
     </div>
   );

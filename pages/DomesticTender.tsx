@@ -2,11 +2,17 @@ import React, { useState } from 'react';
 import { Button } from '../components/Button';
 import { Link } from 'react-router-dom';
 import { Check, X, Play, FileText, Shield, Mail, ChevronDown, ChevronUp, AlertCircle } from 'lucide-react';
+import { Seo } from '../components/Seo';
 
 export const DomesticTender: React.FC = () => {
   return (
     <div className="bg-obsidian min-h-screen">
-      
+      <Seo
+        title="Domestic Tender Packs"
+        description="Structured tender documentation for homeowners: clear scopes and specifications so you can compare builder quotes like for like."
+        path="/domestic-tender-packs"
+      />
+
       {/* Sticky Launch Offer Banner */}
       <div className="sticky top-20 z-40 bg-surface border-b border-white/5 text-center py-3">
         <div className="container mx-auto px-6">

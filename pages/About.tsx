@@ -3,10 +3,16 @@ import { Button } from '../components/Button';
 import { Link } from 'react-router-dom';
 import { Linkedin } from 'lucide-react';
 import mikePhoto from "../components/assets/Clear Build Profile Pic.png";
+import { Seo } from '../components/Seo';
 
 export const About: React.FC = () => {
   return (
     <div className="bg-obsidian min-h-screen pt-24 pb-24">
+      <Seo
+        title="About"
+        description="Clear Build Consulting is led by Mike Anderson, a senior project manager with over 20 years delivering complex civil engineering and infrastructure projects. Clear scope, clear systems, better decisions."
+        path="/about"
+      />
       <div className="container mx-auto px-6">
         
         {/* Philosophy Section */}

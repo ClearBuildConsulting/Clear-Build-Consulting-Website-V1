@@ -30,7 +30,7 @@ export const Footer: React.FC = () => {
         </div>
         
         <div className="mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-xs text-structural">
-          <p>&copy; {new Date().getFullYear()} ClearBuild Consulting. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Clear Build Consulting. All rights reserved.</p>
           <div className="mt-4 md:mt-0">
             <span className="opacity-50">Intellect and outcome, not just hours.</span>
           </div>
