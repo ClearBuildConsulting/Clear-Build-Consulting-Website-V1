@@ -15,7 +15,6 @@ export const Navbar: React.FC = () => {
   const navItems = [
     { label: 'Home', path: '/' },
     { label: 'AI Advisory', path: '/ai-advisory' },
-    { label: 'Domestic Tender Packs', path: '/domestic-tender-packs' },
     { label: 'Built Environment', path: '/built-environment' },
     { label: 'About', path: '/about' },
     { label: 'Contact', path: '/contact' },

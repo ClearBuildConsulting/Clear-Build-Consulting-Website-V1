@@ -3,20 +3,22 @@ import { Button } from '../components/Button';
 import { Link } from 'react-router-dom';
 import { Search, Lightbulb, Map, Hammer, CheckCircle, ChevronDown, ChevronUp, ArrowRight } from 'lucide-react';
 import { Seo } from '../components/Seo';
+import { Section, Container, Eyebrow, Reveal } from '../components/primitives';
 
 export const AIAdvisory: React.FC = () => {
   return (
-    <div className="bg-obsidian min-h-screen pt-24 pb-24">
+    <div className="bg-obsidian min-h-screen">
       <Seo
         title="AI Advisory"
         description="Practical AI consultancy for UK SMEs. We map how your operations run, identify where AI delivers measurable improvement, and implement with discipline. Book an AI readiness review."
         path="/ai-advisory"
       />
-      <div className="container mx-auto px-6">
-        
+      <Section spacing="none" className="pt-24 pb-24">
+        <Container>
+
         {/* 1. Hero Section */}
-        <div className="max-w-4xl mb-24">
-          <span className="text-focus font-bold tracking-widest uppercase text-xs mb-4 block">Primary Service</span>
+        <Reveal className="max-w-4xl mb-24">
+          <Eyebrow className="text-focus mb-4">Primary Service</Eyebrow>
           <h1 className="font-display text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
             Practical AI advisory for growing businesses.
           </h1>
@@ -41,10 +43,10 @@ export const AIAdvisory: React.FC = () => {
               Read our Capability Pack
             </a>
           </p>
-        </div>
+        </Reveal>
 
         {/* 2. Process Diagram Section */}
-        <div className="mb-32">
+        <Reveal className="mb-32">
           <div className="relative">
             {/* Connector Line (Desktop) */}
             <div className="hidden lg:block absolute top-12 left-[12%] right-[12%] h-px bg-white/10 border-t border-dashed border-white/10"></div>
@@ -101,10 +103,10 @@ export const AIAdvisory: React.FC = () => {
 
             </div>
           </div>
-        </div>
+        </Reveal>
 
         {/* 3. What the Audit Produces */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-32 border-t border-white/5 pt-24">
+        <Reveal className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-32 border-t border-white/5 pt-24">
             
             {/* Left Column: Deliverables */}
             <div>
@@ -158,10 +160,10 @@ export const AIAdvisory: React.FC = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </Reveal>
 
         {/* 4. Engagement Model */}
-        <div className="max-w-4xl mx-auto mb-32 text-center">
+        <Reveal className="max-w-4xl mx-auto mb-32 text-center">
             <h2 className="font-display text-3xl font-bold text-white mb-10">Engagement Model</h2>
             <div className="bg-obsidian border border-white/10 p-8 md:p-12 rounded-sm inline-block w-full text-left">
                <div className="flex justify-center">
@@ -189,10 +191,10 @@ export const AIAdvisory: React.FC = () => {
                    </ul>
                </div>
             </div>
-        </div>
+        </Reveal>
 
         {/* 5. Call to Action */}
-        <div className="bg-surface border border-white/5 p-12 rounded-sm text-center max-w-4xl mx-auto mb-32">
+        <Reveal className="bg-surface border border-white/5 p-12 rounded-sm text-center max-w-4xl mx-auto mb-32">
           <h2 className="font-display text-3xl font-bold text-white mb-6">Ready to remove the ambiguity?</h2>
           <p className="text-structural text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
             Start with a structured assessment of where you are today and what a sensible next step looks like. No pitch. Just clarity.
@@ -200,14 +202,15 @@ export const AIAdvisory: React.FC = () => {
           <Link to="/contact">
             <Button className="px-8 py-4 text-lg">Book a call</Button>
           </Link>
-        </div>
+        </Reveal>
 
         {/* 6. FAQs */}
         <div className="max-w-4xl mx-auto">
            <h2 className="font-display text-3xl font-bold text-white mb-16 text-center">AI Advisory FAQs</h2>
            <FAQSection />
         </div>
-      </div>
+        </Container>
+      </Section>
     </div>
   );
 };

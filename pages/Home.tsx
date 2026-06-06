@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '../components/Button';
 import { Link } from 'react-router-dom';
-import { ArrowRight, FileText, BrainCircuit, Building2 } from 'lucide-react';
+import { ArrowRight, BrainCircuit, Building2 } from 'lucide-react';
 import { Seo } from '../components/Seo';
 import { Section, Container, Card, Reveal } from '../components/primitives';
 
@@ -30,8 +30,8 @@ export const Home: React.FC = () => {
               </p>
 
               <p className="text-xl text-structural leading-relaxed max-w-2xl mb-10 font-light">
-                Alongside AI advisory, we also provide fixed-scope domestic tender documentation
-                and selective built environment advisory, applying the same structured, risk-aware approach.
+                Alongside AI advisory, we provide selective built environment advisory for complex
+                infrastructure programmes, applying the same structured, risk-aware approach.
               </p>
 
               <div className="flex flex-col items-start gap-8">
@@ -63,7 +63,7 @@ export const Home: React.FC = () => {
             </h2>
           </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 
             {/* AI Advisory */}
             <Reveal>
@@ -84,26 +84,8 @@ export const Home: React.FC = () => {
               </Card>
             </Reveal>
 
-            {/* Domestic Tender Packs */}
-            <Reveal delay={70}>
-              <Card>
-                <div className="w-12 h-12 bg-obsidian border border-white/10 flex items-center justify-center mb-6 text-structural">
-                  <FileText size={24} />
-                </div>
-                <h3 className="font-display text-xl font-bold text-white mb-4">
-                  Domestic Tender Packs
-                </h3>
-                <p className="text-structural text-sm leading-relaxed mb-8">
-                  Structured documentation for homeowners. Get like-for-like quotes with clear scopes and specifications. Fixed price.
-                </p>
-                <Link to="/domestic-tender-packs" className="inline-flex items-center text-sm font-bold text-white hover:text-structural transition-colors">
-                  View Service <ArrowRight size={16} className="ml-2" />
-                </Link>
-              </Card>
-            </Reveal>
-
             {/* Built Environment */}
-            <Reveal delay={140}>
+            <Reveal delay={70}>
               <Card>
                 <div className="w-12 h-12 bg-obsidian border border-white/10 flex items-center justify-center mb-6 text-structural">
                   <Building2 size={24} />
@@ -152,7 +134,7 @@ export const Home: React.FC = () => {
             {/* Testimonial 2 */}
             <div className="min-w-[82vw] md:min-w-[460px] lg:min-w-[500px] snap-center bg-surface border border-white/5 p-5 md:p-6 rounded-sm flex flex-col justify-between">
               <blockquote className="text-sm md:text-base text-white/90 leading-relaxed mb-5 font-light">
-                “On complex projects, Mike consistently delivered clarity and structure that saved clients time, money, and stress. Bringing this expertise to domestic building projects is exactly what the market needs to avoid hidden costs and disputes.”
+                “On complex projects, Mike consistently delivered clarity and structure that saved clients time, money, and stress. That same structured approach is exactly what clients need to avoid hidden costs and disputes.”
               </blockquote>
               <div className="pt-4 border-t border-white/5">
                 <cite className="not-italic font-semibold text-white block mb-1 text-sm">
