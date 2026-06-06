@@ -29,13 +29,9 @@ export const Home: React.FC = () => {
 
               <div className="flex flex-col items-start gap-8">
                 <div className="flex flex-col items-start gap-3">
-                  <a
-                    href="https://calendly.com/clearbuild-consulting/30min"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Button>Book a 15-minute call</Button>
-                  </a>
+                  <Link to="/contact">
+                    <Button>Book a call</Button>
+                  </Link>
                   <p className="text-sm font-normal text-white/75 text-left">
                     A short, structured conversation to understand your situation and see how we can help.
                   </p>

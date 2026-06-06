@@ -29,9 +29,9 @@ export const DomesticTender: React.FC = () => {
           </p>
 
           <div className="flex flex-col items-center justify-center gap-3 mb-16">
-            <a href="https://calendly.com/clearbuild-consulting/30min" target="_blank" rel="noopener noreferrer">
-              <Button className="w-full sm:w-auto text-lg px-8 py-4">Book a 15-minute call</Button>
-            </a>
+            <Link to="/contact">
+              <Button className="w-full sm:w-auto text-lg px-8 py-4">Book a call</Button>
+            </Link>
             <p className="text-sm font-normal text-structural">
               A quick call to confirm the right pack.
             </p>
@@ -223,9 +223,9 @@ export const DomesticTender: React.FC = () => {
                    Delivery in 14 days
                  </div>
               </div>
-              <a href="https://calendly.com/clearbuild-consulting/30min" target="_blank" rel="noopener noreferrer">
-                <Button className="w-full">Book a 15-minute call</Button>
-              </a>
+              <Link to="/contact">
+                <Button className="w-full">Book a call</Button>
+              </Link>
             </div>
 
             {/* Premium S1 */}
@@ -261,9 +261,9 @@ export const DomesticTender: React.FC = () => {
                    Delivery in 14 days
                  </div>
               </div>
-              <a href="https://calendly.com/clearbuild-consulting/30min" target="_blank" rel="noopener noreferrer">
-                <Button className="w-full">Book a 15-minute call</Button>
-              </a>
+              <Link to="/contact">
+                <Button className="w-full">Book a call</Button>
+              </Link>
             </div>
 
           </div>

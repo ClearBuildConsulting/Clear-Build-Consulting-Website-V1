@@ -11,20 +11,16 @@ export const Contact: React.FC = () => {
         </h1>
         
         <p className="text-xl text-structural leading-relaxed mb-12 font-light">
-          The fastest way to explore working together is a focused 15-minute call.
+          The fastest way to explore working together is a short email. Tell me a little about your firm and the problem you are looking at, and I will come back to you to arrange a call.
         </p>
 
         <div className="flex flex-col items-center justify-center gap-12">
-          <a 
-            href="https://calendly.com/clearbuild-consulting/30min" 
-            target="_blank" 
-            rel="noopener noreferrer"
-          >
-            <Button className="px-8 py-4 text-lg">Book a 15-minute call</Button>
+          <a href="mailto:mike.anderson@clearbuildconsulting.co.uk">
+            <Button className="px-8 py-4 text-lg">Email me</Button>
           </a>
 
           <div className="text-sm text-structural">
-            <p>Prefer email? <a href="mailto:mike.anderson@clearbuildconsulting.co.uk" className="text-white underline hover:text-focus transition-colors">mike.anderson@clearbuildconsulting.co.uk</a></p>
+            <p><a href="mailto:mike.anderson@clearbuildconsulting.co.uk" className="text-white underline hover:text-focus transition-colors">mike.anderson@clearbuildconsulting.co.uk</a></p>
           </div>
         </div>
 

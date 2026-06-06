@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { Logo } from './Logo';
 
@@ -43,11 +43,11 @@ export const Navbar: React.FC = () => {
               {item.label}
             </NavLink>
           ))}
-          <a href="https://calendly.com/clearbuild-consulting/30min" target="_blank" rel="noopener noreferrer">
+          <Link to="/contact">
             <button className="px-4 py-2 text-xs font-bold uppercase tracking-wider border border-white/20 text-white hover:bg-white hover:text-obsidian transition-colors rounded-sm">
               Book a Call
             </button>
-          </a>
+          </Link>
         </div>
 
         {/* Mobile Toggle */}

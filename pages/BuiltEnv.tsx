@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from '../components/Button';
 import { ShieldCheck, FileSearch, Scale, BookOpen, Clock, Calendar, AlertTriangle, Briefcase } from 'lucide-react';
 
@@ -18,9 +19,9 @@ export const BuiltEnv: React.FC = () => {
           </p>
           
           <div className="flex flex-col items-start gap-3">
-            <a href="https://calendly.com/clearbuild-consulting/30min" target="_blank" rel="noopener noreferrer">
-              <Button className="px-8 py-4 text-lg">Book a 15-minute call</Button>
-            </a>
+            <Link to="/contact">
+              <Button className="px-8 py-4 text-lg">Book a call</Button>
+            </Link>
             <span className="text-sm text-structural font-medium tracking-wide">
               A focused discussion to assess context and fit.
             </span>
@@ -211,9 +212,9 @@ export const BuiltEnv: React.FC = () => {
           <p className="text-xl text-white font-light leading-relaxed mb-10">
             This is advisory-only. Engagements are defined, structured and outcome-focused. Independence is maintained.
           </p>
-          <a href="https://calendly.com/clearbuild-consulting/30min" target="_blank" rel="noopener noreferrer">
-            <Button className="px-8 py-4">Book a 15-minute call</Button>
-          </a>
+          <Link to="/contact">
+            <Button className="px-8 py-4">Book a call</Button>
+          </Link>
         </div>
       </section>
 

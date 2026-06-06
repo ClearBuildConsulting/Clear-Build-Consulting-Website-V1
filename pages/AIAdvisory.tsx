@@ -18,9 +18,9 @@ export const AIAdvisory: React.FC = () => {
             We look at how your operations actually run, where time is lost, where decisions stall and where manual work creeps in. Then we identify where AI will make a measurable difference.
           </p>
           <div className="flex flex-col items-start gap-3">
-             <a href="https://calendly.com/clearbuild-consulting/30min" target="_blank" rel="noopener noreferrer">
-                <Button className="px-8 py-4 text-lg">Book a 15-minute call</Button>
-             </a>
+             <Link to="/contact">
+                <Button className="px-8 py-4 text-lg">Book a call</Button>
+             </Link>
              <span className="text-sm text-structural font-medium tracking-wide">
                A short, structured conversation to understand your situation and see how we can help.
              </span>
@@ -191,9 +191,9 @@ export const AIAdvisory: React.FC = () => {
           <p className="text-structural text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
             Start with a structured assessment of where you are today and what a sensible next step looks like. No pitch. Just clarity.
           </p>
-          <a href="https://calendly.com/clearbuild-consulting/30min" target="_blank" rel="noopener noreferrer">
-            <Button className="px-8 py-4 text-lg">Book a 15-minute call</Button>
-          </a>
+          <Link to="/contact">
+            <Button className="px-8 py-4 text-lg">Book a call</Button>
+          </Link>
         </div>
 
         {/* 6. FAQs */}
