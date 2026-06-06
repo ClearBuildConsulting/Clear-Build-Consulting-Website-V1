@@ -190,7 +190,7 @@ export const Home: React.FC = () => {
               </figure>
             </Reveal>
 
-            {/* Anthony Buchanan — re-framed wording, awaiting Mike's sign-off. */}
+            {/* Anthony Buchanan — re-framed wording, signed off by Mike 2026-06-06. */}
             <Reveal delay={70}>
               <figure className="h-full bg-surface border border-white/5 border-l-2 border-l-focus/40 rounded-sm p-8 flex flex-col justify-between">
                 <blockquote className="text-base text-white/90 leading-relaxed mb-6 font-light">
