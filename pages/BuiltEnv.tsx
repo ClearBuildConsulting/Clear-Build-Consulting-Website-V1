@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { Button } from '../components/Button';
 import { ShieldCheck, FileSearch, Scale, BookOpen, Clock, Calendar, AlertTriangle, Briefcase } from 'lucide-react';
 import { Seo } from '../components/Seo';
+import { JsonLd } from '../components/JsonLd';
+import { serviceSchema } from '../components/schema';
 import { Section, Container, Eyebrow, Reveal } from '../components/primitives';
 
 export const BuiltEnv: React.FC = () => {
@@ -12,6 +14,14 @@ export const BuiltEnv: React.FC = () => {
         title="Built Environment Advisory"
         description="Independent, senior advisory for complex construction and infrastructure programmes: project review, procurement and commercial guidance, governance and early-stage definition."
         path="/built-environment"
+      />
+      <JsonLd
+        data={serviceSchema({
+          name: 'Built Environment Advisory',
+          description:
+            'Independent, senior advisory for complex construction and infrastructure programmes: project review, procurement and commercial guidance, governance and early-stage definition.',
+          path: '/built-environment',
+        })}
       />
 
       {/* 1. Hero Section */}

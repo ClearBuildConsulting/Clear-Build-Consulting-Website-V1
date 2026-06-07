@@ -3,6 +3,8 @@ import { Button } from '../components/Button';
 import { Link } from 'react-router-dom';
 import { Search, Lightbulb, Map, Hammer, CheckCircle, ChevronDown, ChevronUp, ArrowRight } from 'lucide-react';
 import { Seo } from '../components/Seo';
+import { JsonLd } from '../components/JsonLd';
+import { serviceSchema, faqSchema, aiAdvisoryFaqs } from '../components/schema';
 import { Section, Container, Eyebrow, Reveal } from '../components/primitives';
 import { useInView } from '../hooks/useInView';
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
@@ -18,6 +20,17 @@ export const AIAdvisory: React.FC = () => {
         title="AI Advisory"
         description="Practical AI consultancy for UK SMEs. We map how your operations run, identify where AI delivers measurable improvement, and implement with discipline. Book an AI readiness review."
         path="/ai-advisory"
+      />
+      <JsonLd
+        data={[
+          serviceSchema({
+            name: 'AI Advisory',
+            description:
+              'Practical AI consultancy for UK SMEs. We map how your operations run, identify where AI delivers measurable improvement, and implement with discipline.',
+            path: '/ai-advisory',
+          }),
+          faqSchema(aiAdvisoryFaqs),
+        ]}
       />
       <Section spacing="none" className="pt-24 pb-24">
         <Container>
@@ -231,50 +244,23 @@ export const AIAdvisory: React.FC = () => {
 const FAQSection: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  const faqs = [
-    {
-      q: "How do I know if my business is ready for AI?",
-      a: "You do not need to be technically advanced to engage. What matters is whether your business has repeatable processes, recurring administrative work, or decision bottlenecks that slow delivery.\n\nIf your team relies heavily on spreadsheets, email chains, manual document preparation, or duplicated effort, there is usually scope for improvement. The audit determines whether AI is commercially justified and where it should be applied. If it is not appropriate, that will be made clear."
-    },
-    {
-      q: "What size businesses do you typically work with?",
-      a: "We work with established small and mid-sized businesses, from professional services to trades, where operational complexity is beginning to create drag.\n\nIf inefficiencies are affecting time, cost, reporting, or decision-making, the advisory model is designed to bring structure and measurable improvement.\n\nVery early-stage or informal ventures are usually not suitable."
-    },
-    {
-      q: "Is this about replacing staff?",
-      a: "No. The focus is operational efficiency, not headcount reduction.\n\nMost opportunities in SMEs involve removing repetitive low value tasks, improving response times, and standardising outputs. The objective is improved margin and delivery quality, not replacing experienced people."
-    },
-    {
-      q: "What does the AI audit actually produce?",
-      a: "The audit produces a structured written report including:\n\n• An AI Opportunity Register\n• Prioritised use cases\n• A Do Now / Do Later framework\n• A 90 day roadmap\n• Governance and risk commentary\n\nThis is a practical implementation framework, not a generic slide deck."
-    },
-    {
-      q: "Do you also implement the recommended solutions?",
-      a: "Yes. Selected opportunities can move into a defined implementation phase.\n\nImplementation may be delivered directly or in partnership with trusted technical specialists, depending on complexity. Advisory oversight remains in place to ensure alignment, governance, and commercial discipline."
-    },
-    {
-      q: "How long does the process take?",
-      a: "A typical audit runs between three and six weeks, depending on organisational size and complexity.\n\nThe engagement is fixed scope and time bound. Implementation phases are defined separately once priorities are agreed."
-    },
-    {
-      q: "Do you sell software or receive commission from tools?",
-      a: "No.\n\nRecommendations are made independently and based on suitability, not affiliation. The objective is operational improvement, not software sales."
-    }
-  ];
+  const faqs = aiAdvisoryFaqs;
 
   return (
     <div className="space-y-4">
       {faqs.map((faq, index) => (
         <div key={index} className="border-b border-white/10 pb-4">
           <button
-            className="flex items-center justify-between w-full text-left py-2 focus:outline-none group"
+            className="flex items-center justify-between w-full text-left py-2 focus:outline-none focus-visible:ring-1 focus-visible:ring-focus rounded-sm group"
             onClick={() => setOpenIndex(openIndex === index ? null : index)}
+            aria-expanded={openIndex === index}
+            aria-controls={`faq-answer-${index}`}
           >
             <span className="font-bold text-white group-hover:text-focus transition-colors pr-8">{faq.q}</span>
             {openIndex === index ? <ChevronUp size={20} className="text-focus flex-shrink-0" /> : <ChevronDown size={20} className="text-structural group-hover:text-white flex-shrink-0" />}
           </button>
           {openIndex === index && (
-             <div className="mt-4 text-structural text-sm leading-relaxed animate-in fade-in slide-in-from-top-2 duration-200 whitespace-pre-line">
+             <div id={`faq-answer-${index}`} className="mt-4 text-structural text-sm leading-relaxed animate-slide-down whitespace-pre-line">
                {faq.a}
              </div>
           )}

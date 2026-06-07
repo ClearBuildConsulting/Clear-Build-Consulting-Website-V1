@@ -12,7 +12,7 @@ export const Logo: React.FC = () => {
       </div>
       <div className="flex flex-col justify-center">
         <span className="font-display font-bold text-xl tracking-tight leading-none text-paper">
-          ClearBuild
+          Clear Build
         </span>
         <span className="font-sans text-[10px] tracking-[0.2em] font-medium text-structural uppercase leading-none mt-1">
           Consulting

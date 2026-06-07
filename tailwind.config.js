@@ -47,10 +47,16 @@ export default {
           from: { opacity: '0' },
           to: { opacity: '1' },
         },
+        // Accordion / disclosure reveal: small slide down with fade.
+        'slide-down': {
+          from: { opacity: '0', transform: 'translateY(-0.25rem)' },
+          to: { opacity: '1', transform: 'translateY(0)' },
+        },
       },
       animation: {
         'rise-in': 'rise-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both',
         'fade-in': 'fade-in 0.8s ease-out both',
+        'slide-down': 'slide-down 0.2s ease-out both',
       },
       container: {
         center: true,

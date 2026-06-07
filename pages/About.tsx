@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { Linkedin } from 'lucide-react';
 import mikePhoto from "../components/assets/Clear Build Profile Pic.png";
 import { Seo } from '../components/Seo';
+import { JsonLd } from '../components/JsonLd';
+import { personSchema } from '../components/schema';
 import { Section, Container, Reveal } from '../components/primitives';
 
 export const About: React.FC = () => {
@@ -13,6 +15,7 @@ export const About: React.FC = () => {
         description="Clear Build Consulting is led by Mike Anderson, a senior project manager with over 20 years delivering complex civil engineering and infrastructure projects. Clear scope, clear systems, better decisions."
         path="/about"
       />
+      <JsonLd data={personSchema} />
       <Section spacing="none" className="pt-24 pb-24">
         <Container>
 

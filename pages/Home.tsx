@@ -3,6 +3,8 @@ import { Button } from '../components/Button';
 import { Link } from 'react-router-dom';
 import { BrainCircuit, Building2 } from 'lucide-react';
 import { Seo } from '../components/Seo';
+import { JsonLd } from '../components/JsonLd';
+import { organizationSchema } from '../components/schema';
 import { Section, Container, Reveal, Eyebrow } from '../components/primitives';
 import { StructuralLattice } from '../components/StructuralLattice';
 import { HeroHeadline } from '../components/HeroHeadline';
@@ -18,6 +20,7 @@ export const Home: React.FC = () => {
         description="Clear Build Consulting helps small and mid sized businesses understand how their operations run, identify where AI delivers measurable improvement, and implement with discipline. Senior built environment advisory alongside."
         path="/"
       />
+      <JsonLd data={organizationSchema} />
 
       {/* Hero: asymmetric 60/40, lattice signature on the right. */}
       <Section spacing="none" dividerBottom className="relative overflow-hidden">
