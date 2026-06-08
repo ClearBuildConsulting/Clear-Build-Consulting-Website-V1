@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button } from '../components/Button';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { Search, Lightbulb, Map, Hammer, CheckCircle, ChevronDown, ChevronUp, ArrowRight } from 'lucide-react';
 import { Seo } from '../components/Seo';
 import { JsonLd } from '../components/JsonLd';

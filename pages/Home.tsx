@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '../components/Button';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { BrainCircuit, Building2 } from 'lucide-react';
 import { Seo } from '../components/Seo';
 import { JsonLd } from '../components/JsonLd';

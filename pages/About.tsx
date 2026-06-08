@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { Linkedin } from 'lucide-react';
 import mikePhoto from "../components/assets/clear-build-profile.jpg";
 import { Seo } from '../components/Seo';
