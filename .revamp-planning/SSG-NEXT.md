@@ -1,5 +1,14 @@
 # Next milestone: crawlable HTML via React Router v7 native SSG
 
+> **✅ DELIVERED 2026-06-08** on branch `website-revamp/rr7-ssg` (commits
+> `c22404a` migration, `5fc9e3e` Vercel). RR7 framework mode with `ssr:false` +
+> `prerender` now generates real static HTML for all 5 routes. Hydration
+> verified clean (0 console errors on every route, visual parity, SPA nav works)
+> — the snapshot/style-mismatch problem analysed below is structurally gone
+> because React renders the HTML itself. Execution plan + verification log:
+> `SSG-PLAN.md`. Remaining: PR + merge + Vercel output-dir confirmation (Mike).
+> The analysis below is kept as the record of why the abandoned approaches failed.
+
 **Status:** deferred from Day 10 (2026-06-08). The redesign ships as a clean SPA;
 this is the dedicated follow-up to make the site fully crawlable.
 
