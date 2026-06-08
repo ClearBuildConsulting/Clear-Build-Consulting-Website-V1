@@ -1,8 +1,7 @@
 {
+  "buildCommand": "npm run build",
+  "outputDirectory": "build/client",
   "redirects": [
     { "source": "/domestic-tender-packs", "destination": "/", "permanent": true }
-  ],
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
