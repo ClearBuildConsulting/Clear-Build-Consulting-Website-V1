@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Linkedin } from 'lucide-react';
-import mikePhoto from "../components/assets/Clear Build Profile Pic.png";
+import mikePhoto from "../components/assets/clear-build-profile.jpg";
 import { Seo } from '../components/Seo';
 import { JsonLd } from '../components/JsonLd';
 import { personSchema } from '../components/schema';
@@ -53,6 +53,9 @@ export const About: React.FC = () => {
                       <img
                         src={mikePhoto}
                         alt="Mike Anderson"
+                        width={819}
+                        height={1024}
+                        loading="lazy"
                         className="w-full h-full object-cover"
                       />
                     </div>
