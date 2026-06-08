@@ -12,7 +12,7 @@ export const Footer: React.FC = () => {
           </div>
           
           <div>
-            <h4 className="font-display font-bold text-white mb-6">Services</h4>
+            <h2 className="font-display font-bold text-white mb-6 text-base">Services</h2>
             <ul className="space-y-4 text-sm text-structural">
               <li><Link to="/ai-advisory" className="hover:text-white transition-colors">AI Advisory</Link></li>
               <li><Link to="/built-environment" className="hover:text-white transition-colors">Built Environment Advisory</Link></li>
@@ -20,7 +20,7 @@ export const Footer: React.FC = () => {
           </div>
 
           <div>
-            <h4 className="font-display font-bold text-white mb-6">Company</h4>
+            <h2 className="font-display font-bold text-white mb-6 text-base">Company</h2>
             <ul className="space-y-4 text-sm text-structural">
               <li><Link to="/about" className="hover:text-white transition-colors">About</Link></li>
               <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
@@ -31,7 +31,7 @@ export const Footer: React.FC = () => {
         <div className="mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-xs text-structural">
           <p>&copy; {new Date().getFullYear()} Clear Build Consulting. All rights reserved.</p>
           <div className="mt-4 md:mt-0">
-            <span className="opacity-50">Intellect and outcome, not just hours.</span>
+            <span>Intellect and outcome, not just hours.</span>
           </div>
         </div>
       </div>
