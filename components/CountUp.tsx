@@ -52,11 +52,12 @@ export const CountUp: React.FC<CountUpProps> = ({
     return () => cancelAnimationFrame(frame);
   }, [inView, prefersReduced, to, duration]);
 
+  // Compose into one string so it renders as a single text node. Adjacent JSX
+  // expressions would create separate text nodes that merge when prerendered
+  // HTML is reparsed, causing a hydration mismatch.
   return (
     <span ref={ref} className={className}>
-      {prefix}
-      {value}
-      {suffix}
+      {`${prefix}${value}${suffix}`}
     </span>
   );
 };
