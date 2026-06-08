@@ -15,7 +15,6 @@ export const Navbar: React.FC = () => {
   const navItems = [
     { label: 'Home', path: '/' },
     { label: 'AI Advisory', path: '/ai-advisory' },
-    { label: 'Domestic Tender Packs', path: '/domestic-tender-packs' },
     { label: 'Built Environment', path: '/built-environment' },
     { label: 'About', path: '/about' },
     { label: 'Contact', path: '/contact' },
@@ -54,6 +53,8 @@ export const Navbar: React.FC = () => {
         <button
           className="lg:hidden text-white p-2"
           onClick={() => setIsOpen(!isOpen)}
+          aria-label={isOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={isOpen}
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>

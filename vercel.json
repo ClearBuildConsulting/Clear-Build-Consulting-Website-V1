@@ -1,0 +1,8 @@
+{
+  "redirects": [
+    { "source": "/domestic-tender-packs", "destination": "/", "permanent": true }
+  ],
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}

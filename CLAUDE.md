@@ -1,7 +1,7 @@
-# ClearBuild Consulting Website
-**Owner:** Mike Anderson, ClearBuild Consulting
+# Clear Build Consulting Website
+**Owner:** Mike Anderson, Clear Build Consulting
 **Repo:** ClearBuildConsulting/Clear-Build-Consulting-Website-V1
-**Live site:** www.clearbuildconsultant.co.uk
+**Live site:** www.clearbuildconsulting.co.uk
 
 ---
 
