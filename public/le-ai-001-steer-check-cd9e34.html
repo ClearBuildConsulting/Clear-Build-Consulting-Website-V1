@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<link rel="stylesheet" href="/comment-layer.css">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Link Engineering — AI Opportunity Steer-Check — Clear Build Consulting</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&family=Manrope:wght@700;800&family=Inter:wght@400;500;600&display=swap');
+
+:root{
+  --cb-obsidian:#020617; --cb-surface:#0F172A; --cb-slate-800:#1E293B; --cb-slate-700:#334155;
+  --cb-slate-600:#475569; --cb-slate-500:#64748B; --cb-structural:#94A3B8; --cb-white:#FFFFFF;
+  --cb-surface-light:#F8FAFC; --cb-border:#E2E8F0; --cb-slate-300:#CBD5E1;
+  --cb-indigo:#6366F1; --cb-indigo-100:#E0E7FF; --cb-indigo-deep:#3730A3;
+  --cb-amber:#F59E0B; --cb-amber-50:#FFFBEB; --cb-amber-dark:#92400E; --cb-amber-700:#B45309;
+  --cb-red:#EF4444; --cb-red-50:#FEF2F2; --cb-red-dark:#991B1B; --cb-red-600:#DC2626;
+  --cb-green:#22C55E; --cb-green-50:#F0FDF4; --cb-green-800:#166534;
+  --cb-blue-50:#EFF6FF; --cb-blue-500:#3B82F6; --cb-blue-600:#2563EB; --cb-blue-700:#1D4ED8; --cb-blue-800:#1E40AF;
+  --cb-purple:#7C3AED;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:
+    radial-gradient(1200px 700px at 80% -10%, rgba(99,102,241,0.10), transparent 60%),
+    radial-gradient(900px 600px at -10% 110%, rgba(124,58,237,0.08), transparent 55%),
+    var(--cb-obsidian);
+  color:var(--cb-white);
+  overflow:hidden;
+}
+
+/* ── Cockpit chrome ── */
+.viewer{height:100vh;display:flex;flex-direction:column;}
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 36px;flex-shrink:0;
+  border-bottom:1px solid rgba(148,163,184,0.16);
+  background:rgba(2,6,23,0.6);backdrop-filter:blur(8px);
+}
+.topbar-logo svg{height:88px;width:auto;}
+.topbar-ctx{text-align:center;}
+.topbar-ctx .tc-title{font-size:13px;font-weight:700;color:var(--cb-white);letter-spacing:0.01em;}
+.topbar-ctx .tc-sub{font-size:10.5px;color:var(--cb-structural);text-transform:uppercase;letter-spacing:0.14em;margin-top:2px;}
+.topbar-conf{font-size:10px;font-weight:700;color:var(--cb-slate-500);text-transform:uppercase;letter-spacing:0.14em;}
+
+/* ── Stage ── */
+.stage{flex:1;position:relative;overflow:hidden;}
+.track{display:flex;height:100%;transition:transform 0.55s cubic-bezier(0.4,0,0.15,1);}
+.panel{
+  min-width:100%;height:100%;overflow-y:auto;overflow-x:hidden;
+  display:flex;align-items:flex-start;justify-content:center;
+  padding:34px 40px 90px;
+  scrollbar-width:thin;scrollbar-color:rgba(148,163,184,0.4) transparent;
+}
+.panel::-webkit-scrollbar{width:9px;}
+.panel::-webkit-scrollbar-thumb{background:rgba(148,163,184,0.35);border-radius:6px;}
+.card{
+  width:100%;max-width:1340px;background:var(--cb-white);border-radius:10px;
+  box-shadow:0 24px 70px rgba(2,6,23,0.55),0 2px 10px rgba(2,6,23,0.4);
+  overflow:hidden;color:var(--cb-slate-700);
+  animation:rise 0.6s cubic-bezier(0.2,0.7,0.2,1) both;
+}
+@keyframes rise{from{opacity:0;transform:translateY(22px) scale(0.992);}to{opacity:1;transform:none;}}
+
+/* ── Bottom nav ── */
+.nav{
+  position:absolute;left:0;right:0;bottom:0;height:74px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;gap:26px;
+  background:linear-gradient(0deg, rgba(2,6,23,0.92), rgba(2,6,23,0.0));
+  pointer-events:none;
+}
+.nav > *{pointer-events:auto;}
+.nav-btn{
+  display:flex;align-items:center;gap:8px;
+  background:rgba(15,23,42,0.85);border:1px solid rgba(148,163,184,0.28);
+  color:var(--cb-white);font-family:'DM Sans',sans-serif;font-size:12.5px;font-weight:600;
+  padding:10px 18px;border-radius:30px;cursor:pointer;transition:all 0.2s ease;
+  backdrop-filter:blur(6px);
+}
+.nav-btn:hover:not(:disabled){border-color:var(--cb-indigo);background:rgba(99,102,241,0.18);}
+.nav-btn:disabled{opacity:0.32;cursor:default;}
+.dots{display:flex;align-items:center;gap:12px;}
+.dot{display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;border:none;background:none;padding:4px 2px;}
+.dot-mark{width:9px;height:9px;border-radius:50%;background:rgba(148,163,184,0.4);transition:all 0.25s ease;}
+.dot.active .dot-mark{background:var(--cb-indigo);width:26px;border-radius:5px;box-shadow:0 0 10px rgba(99,102,241,0.7);}
+.dot-label{font-size:9px;font-weight:700;color:var(--cb-slate-500);text-transform:uppercase;letter-spacing:0.1em;white-space:nowrap;transition:color 0.25s ease;}
+.dot.active .dot-label{color:var(--cb-white);}
+.counter{position:absolute;right:34px;bottom:26px;font-family:'DM Mono',monospace;font-size:13px;font-weight:500;color:var(--cb-structural);}
+.counter b{color:var(--cb-white);}
+.hint{position:absolute;left:34px;bottom:28px;font-size:10px;color:var(--cb-slate-500);text-transform:uppercase;letter-spacing:0.1em;}
+
+/* ════ shared inner-visual styles (scaled for full-screen panels) ════ */
+.v-header{background:var(--cb-obsidian);padding:24px 44px 22px;border-bottom:3px solid var(--cb-indigo);}
+.v-header-meta{display:flex;justify-content:space-between;align-items:flex-end;}
+.vh-label{font-size:11px;font-weight:600;color:var(--cb-slate-500);text-transform:uppercase;letter-spacing:0.14em;margin-bottom:6px;}
+.vh-title{font-size:27px;font-weight:700;color:var(--cb-white);letter-spacing:-0.01em;}
+.vh-title .draft{font-size:13px;font-weight:700;color:var(--cb-obsidian);background:var(--cb-amber);padding:3px 11px;border-radius:5px;vertical-align:middle;margin-left:12px;letter-spacing:0.08em;}
+.vh-sub{font-size:13.5px;font-weight:400;color:var(--cb-structural);margin-top:7px;}
+.vh-right{text-align:right;}
+.vh-right.txt{font-size:11.5px;color:var(--cb-structural);line-height:1.7;max-width:300px;}
+.lg-item{display:flex;align-items:center;gap:9px;justify-content:flex-end;margin-bottom:8px;}
+.lg-item:last-child{margin-bottom:0;}
+.lg-sw{width:13px;height:13px;border-radius:3px;} .lg-dot{width:14px;height:14px;border-radius:50%;}
+.lg-label{font-size:11px;font-weight:600;color:var(--cb-structural);text-transform:uppercase;letter-spacing:0.06em;}
+
+.v-body{padding:34px 44px 32px;}
+.v-intro{font-size:14.5px;color:var(--cb-slate-600);margin-bottom:18px;line-height:1.6;max-width:1040px;}
+
+.v-summary{background:var(--cb-surface);padding:26px 44px;display:grid;grid-template-columns:repeat(4,1fr);gap:28px;}
+.sc-label{font-size:10px;font-weight:700;color:var(--cb-slate-500);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:9px;}
+.sc-value{font-size:29px;font-weight:700;margin-bottom:5px;line-height:1;}
+.sc-desc{font-size:11.5px;font-weight:400;color:var(--cb-structural);line-height:1.4;}
+.v-amber{color:var(--cb-amber);} .v-red{color:var(--cb-red);} .v-indigo{color:var(--cb-indigo);}
+.v-white{color:var(--cb-white);} .v-blue{color:var(--cb-blue-500);} .v-purple{color:var(--cb-purple);} .v-green{color:var(--cb-green);}
+
+.v-footer{padding:18px 44px;border-top:1px solid var(--cb-border);display:flex;justify-content:space-between;align-items:center;background:var(--cb-white);}
+.vf-left{font-size:11px;color:var(--cb-structural);max-width:860px;}
+.vf-right{font-size:11px;font-weight:700;color:var(--cb-slate-500);text-transform:uppercase;letter-spacing:0.08em;}
+
+/* ── Panel 1: Ops Canvas ── */
+.spine{display:flex;margin:0 0 26px;border-radius:8px;overflow:hidden;border:2px solid var(--cb-indigo);}
+.spine-label{background:var(--cb-indigo);color:var(--cb-white);padding:16px 20px;display:flex;flex-direction:column;justify-content:center;min-width:200px;}
+.sl-tag{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:0.12em;opacity:0.85;margin-bottom:4px;}
+.sl-name{font-size:17px;font-weight:700;line-height:1.2;}
+.spine-steps{flex:1;display:flex;background:var(--cb-indigo-100);}
+.spine-step{flex:1;padding:16px 14px;text-align:center;display:flex;flex-direction:column;justify-content:center;position:relative;}
+.ss-num{font-family:'DM Mono',monospace;font-size:11px;font-weight:600;color:var(--cb-indigo-deep);}
+.ss-name{font-size:15.5px;font-weight:700;color:var(--cb-indigo-deep);margin-top:3px;}
+.spine-step:not(:last-child)::after{content:"\2192";position:absolute;right:-9px;top:50%;transform:translateY(-50%);color:var(--cb-indigo);font-size:18px;font-weight:700;z-index:2;}
+.sec-tag{font-family:'DM Mono',monospace;font-size:11px;font-weight:600;color:var(--cb-slate-500);text-transform:uppercase;letter-spacing:0.1em;margin:6px 0 13px;}
+.delivs{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:26px;}
+.deliv{border:1px solid var(--cb-border);border-radius:7px;overflow:hidden;background:var(--cb-white);box-shadow:0 1px 4px rgba(15,23,42,0.05);}
+.deliv-head{background:var(--cb-surface);padding:12px 15px;}
+.dh-name{font-size:15px;font-weight:700;color:var(--cb-white);line-height:1.2;}
+.dh-vol{font-size:11.5px;color:var(--cb-structural);margin-top:3px;}
+.deliv-body{padding:11px 13px 13px;}
+.deliv-row{display:flex;align-items:center;gap:8px;font-size:11.5px;padding:4px 0;color:var(--cb-slate-600);line-height:1.3;}
+.dr-step{font-family:'DM Mono',monospace;font-size:9.5px;color:var(--cb-slate-500);width:54px;flex-shrink:0;text-transform:uppercase;letter-spacing:0.04em;}
+.deliv-row.hot .dr-text{font-weight:600;}
+.deliv-row.hot.amber .dr-text{color:var(--cb-amber-dark);}
+.deliv-row.hot.red .dr-text{color:var(--cb-red-dark);}
+.fd{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.f-amber{background:var(--cb-amber);} .f-red{background:var(--cb-red);} .f-clear{background:var(--cb-slate-300);}
+.layer{background:linear-gradient(180deg,var(--cb-surface-light),var(--cb-white));border:1.5px dashed var(--cb-slate-300);border-radius:8px;padding:16px 20px;margin-bottom:26px;}
+.layer-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.lh-name{font-size:15px;font-weight:700;color:var(--cb-slate-800);}
+.lh-note{font-size:11.5px;color:var(--cb-slate-500);margin-left:auto;font-style:italic;}
+.layer-items{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;}
+.layer-item{background:var(--cb-white);border:1px solid var(--cb-border);border-radius:6px;padding:11px 13px;}
+.li-name{font-size:13px;font-weight:700;color:var(--cb-slate-800);margin-bottom:3px;display:flex;align-items:center;gap:7px;}
+.li-desc{font-size:11.5px;color:var(--cb-slate-600);line-height:1.35;}
+.admin-fin{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.af-block{border:1px solid var(--cb-border);border-radius:7px;overflow:hidden;}
+.af-head{background:var(--cb-slate-700);padding:11px 15px;}
+.afh-name{font-size:14.5px;font-weight:700;color:var(--cb-white);}
+.afh-who{font-size:11px;color:var(--cb-structural);margin-top:2px;}
+.af-body{padding:12px 14px;display:flex;flex-direction:column;gap:9px;}
+.af-task{display:flex;gap:10px;align-items:flex-start;}
+.aft-dot{width:8px;height:8px;border-radius:50%;margin-top:5px;flex-shrink:0;}
+.aft-name{font-size:12.5px;font-weight:600;color:var(--cb-slate-800);}
+.aft-detail{font-size:11px;color:var(--cb-slate-500);line-height:1.3;}
+
+/* ── Panel 2: Matrix ── */
+.guardrail{background:var(--cb-indigo-100);border-left:4px solid var(--cb-indigo);padding:13px 20px;}
+.g-title{font-size:12px;font-weight:700;color:var(--cb-indigo-deep);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:3px;}
+.g-text{font-size:13px;color:var(--cb-slate-700);line-height:1.5;}
+.mx-body{padding:30px 44px 30px;display:flex;gap:30px;}
+.plot-wrap{flex:1;min-width:0;}
+.plot-intro{font-size:13.5px;color:var(--cb-slate-600);margin-bottom:22px;line-height:1.55;}
+.plot-area{position:relative;padding-left:34px;}
+.y-axis-label{position:absolute;left:-8px;top:50%;transform:rotate(-90deg);transform-origin:left center;font-size:12.5px;font-weight:700;color:var(--cb-slate-700);text-transform:uppercase;letter-spacing:0.08em;white-space:nowrap;}
+.plot{position:relative;height:520px;margin-left:24px;border-left:2px solid var(--cb-slate-300);border-bottom:2px solid var(--cb-slate-300);background:var(--cb-white);}
+.dv{position:absolute;left:50%;top:0;bottom:0;border-left:1.5px dashed var(--cb-slate-300);}
+.dh{position:absolute;top:50%;left:0;right:0;border-top:1.5px dashed var(--cb-slate-300);}
+.qt-qw{position:absolute;right:0;bottom:0;width:50%;height:50%;background:var(--cb-blue-50);opacity:0.6;}
+.qt-p2{position:absolute;right:0;top:0;width:50%;height:50%;background:#F5F3FF;opacity:0.7;}
+.quad{position:absolute;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;padding:9px 12px;}
+.q-qw{right:12px;bottom:6px;color:var(--cb-blue-700);text-align:right;}
+.q-p2{right:12px;top:10px;color:var(--cb-purple);text-align:right;}
+.q-lp{left:12px;top:10px;color:var(--cb-structural);}
+.q-mn{left:12px;bottom:6px;color:var(--cb-structural);}
+.bub{position:absolute;border-radius:50%;display:flex;align-items:center;justify-content:center;transform:translate(-50%,-50%);box-shadow:0 3px 10px rgba(15,23,42,0.22);font-weight:700;color:var(--cb-white);text-align:center;line-height:1;}
+.bub.dn{background:var(--cb-blue-500);border:2.5px solid var(--cb-white);}
+.bub.p2{background:var(--cb-purple);border:2.5px solid var(--cb-white);}
+.bub.dl{background:var(--cb-slate-500);border:2.5px solid var(--cb-white);}
+.bid{font-family:'DM Mono',monospace;font-size:13px;}
+.tk{position:absolute;font-size:11px;font-weight:700;color:var(--cb-slate-500);text-transform:uppercase;letter-spacing:0.04em;}
+.tk.yt{left:-26px;top:-2px;} .tk.yb{left:-24px;bottom:-2px;}
+.xal{text-align:center;font-size:12.5px;font-weight:700;color:var(--cb-slate-700);text-transform:uppercase;letter-spacing:0.08em;margin:12px 0 0 22px;}
+.xtk{display:flex;justify-content:space-between;margin:7px 0 0 22px;font-size:11px;font-weight:700;color:var(--cb-slate-500);text-transform:uppercase;}
+.mx-side{width:322px;flex-shrink:0;}
+.sb-h{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;margin:0 0 11px;padding-bottom:6px;border-bottom:2px solid var(--cb-border);}
+.sb-h.qw{color:var(--cb-blue-700);border-color:var(--cb-blue-500);}
+.sb-h.p2{color:var(--cb-purple);border-color:var(--cb-purple);margin-top:18px;}
+.sb-h.tv{color:var(--cb-amber-dark);border-color:var(--cb-amber);margin-top:18px;}
+.oc{border-radius:6px;padding:10px 13px;margin-bottom:9px;}
+.oc.dn{background:var(--cb-blue-50);border-left:3px solid var(--cb-blue-500);}
+.oc.p2{background:#F5F3FF;border-left:3px solid var(--cb-purple);}
+.oc-top{display:flex;align-items:center;gap:8px;margin-bottom:3px;}
+.oc-id{font-family:'DM Mono',monospace;font-size:10px;font-weight:600;color:var(--cb-white);background:var(--cb-blue-500);padding:2px 7px;border-radius:3px;}
+.oc.p2 .oc-id{background:var(--cb-purple);}
+.oc-name{font-size:12.5px;font-weight:700;color:var(--cb-slate-800);line-height:1.2;}
+.oc-meta{font-size:10.5px;color:var(--cb-slate-500);line-height:1.4;}
+.tv-list{font-size:11px;color:var(--cb-slate-500);line-height:1.6;}
+.tv-list b{color:var(--cb-slate-700);font-family:'DM Mono',monospace;font-weight:600;}
+
+/* ── Panel 3: Longlist ── */
+.funnel{display:flex;margin-bottom:32px;border-radius:8px;overflow:hidden;border:1px solid var(--cb-border);}
+.fst{flex:1;padding:16px 20px;}
+.fs-num{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:0.1em;opacity:0.85;}
+.fs-name{font-size:15px;font-weight:700;margin-top:4px;line-height:1.2;}
+.fs-desc{font-size:11.5px;margin-top:5px;line-height:1.35;opacity:0.88;}
+.fs1{background:var(--cb-surface-light);color:var(--cb-slate-700);}
+.fs2{background:var(--cb-indigo-100);color:var(--cb-indigo-deep);}
+.fs3{background:var(--cb-surface);color:var(--cb-white);}
+.fs3 .fs-num{color:var(--cb-amber);opacity:1;}
+.f-arrow{display:flex;align-items:center;color:var(--cb-slate-300);font-size:22px;font-weight:700;padding:0 4px;background:var(--cb-white);}
+.tier-head{display:flex;align-items:center;gap:11px;margin:30px 0 14px;}
+.tier-tag{font-family:'DM Mono',monospace;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;padding:4px 11px;border-radius:5px;}
+.tier-tag.t1{background:var(--cb-amber);color:var(--cb-obsidian);}
+.tier-tag.t2{background:var(--cb-indigo);color:var(--cb-white);}
+.tier-title{font-size:17px;font-weight:700;color:var(--cb-surface);}
+.tier-sub{font-size:11.5px;color:var(--cb-slate-500);margin-left:auto;}
+table{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:8px;}
+thead th{background:var(--cb-surface);color:var(--cb-white);font-weight:600;padding:10px 13px;text-align:left;font-size:10.5px;text-transform:uppercase;letter-spacing:0.05em;}
+tbody td{padding:10px 13px;border-bottom:1px solid var(--cb-border);vertical-align:top;line-height:1.45;}
+tbody tr:nth-child(even) td{background:var(--cb-surface-light);}
+.oid{font-family:'DM Mono',monospace;font-weight:600;color:var(--cb-indigo-deep);white-space:nowrap;}
+.eid{font-family:'DM Mono',monospace;font-weight:600;color:var(--cb-amber-dark);white-space:nowrap;}
+.oname{font-weight:700;color:var(--cb-slate-800);}
+.ev{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.03em;padding:3px 8px;border-radius:11px;white-space:nowrap;}
+.ev-strong{background:var(--cb-green-50);color:var(--cb-green-800);border:1px solid var(--cb-green);}
+.ev-evid{background:var(--cb-blue-50);color:var(--cb-blue-800);border:1px solid var(--cb-blue-500);}
+.ev-emerging{background:var(--cb-amber-50);color:var(--cb-amber-dark);border:1px solid var(--cb-amber);}
+.ph{display:inline-block;font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;padding:2px 7px;border-radius:4px;margin-left:6px;}
+.ph-w1{background:var(--cb-blue-500);color:var(--cb-white);}
+.ph-p2{background:var(--cb-purple);color:var(--cb-white);}
+.grp{font-size:11px;font-weight:700;color:var(--cb-slate-600);text-transform:uppercase;letter-spacing:0.08em;margin:20px 0 8px;padding-bottom:6px;border-bottom:2px solid var(--cb-border);}
+.grp.em{color:var(--cb-amber-dark);border-color:var(--cb-amber);}
+.note{font-size:11.5px;color:var(--cb-slate-500);font-style:italic;margin:7px 0 0;line-height:1.5;}
+
+@media (max-width:1100px){
+  .topbar-ctx{display:none;}
+  .delivs,.layer-items{grid-template-columns:repeat(2,1fr);}
+  .mx-body{flex-direction:column;} .mx-side{width:100%;}
+}
+</style>
+</head>
+<body>
+<div class="viewer">
+
+  <div class="topbar">
+    <div class="topbar-logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 100" aria-label="Clear Build Consulting"><g transform="translate(0, 15) scale(0.6)"><rect x="10" y="35" width="55" height="55" fill="#FFFFFF" rx="2"/><rect x="35" y="10" width="55" height="55" fill="none" stroke="#FFFFFF" stroke-width="8" rx="2"/></g><g transform="translate(65, 0)"><text x="0" y="55" font-family="'Manrope', sans-serif" font-weight="800" font-size="48" fill="#FFFFFF" letter-spacing="-0.03em">ClearBuild</text><text x="2" y="78" font-family="'Inter', sans-serif" font-weight="600" font-size="11" fill="#94a3b8" letter-spacing="0.3em">CONSULTING</text></g></svg>
+    </div>
+    <div class="topbar-ctx">
+      <div class="tc-title">AI Opportunity Audit — Steer-Check</div>
+      <div class="tc-sub">Link Engineering Ltd · LE-AI-001</div>
+    </div>
+    <div class="topbar-conf">Draft · Confidential</div>
+  </div>
+
+  <div class="stage">
+    <div class="track" id="track">
+
+      <!-- ════════ PANEL 1 — OPS CANVAS ════════ -->
+      <section class="panel">
+        <div class="card">
+          <div class="v-header">
+            <div class="v-header-meta">
+              <div><div class="vh-label">01 / 03 · OPERATIONS CANVAS</div><div class="vh-title">How Link Engineering Works Today</div><div class="vh-sub">Link Engineering Ltd · LE-AI-001 · 10 June 2026</div></div>
+              <div class="vh-right">
+                <div class="lg-item"><span class="lg-sw" style="background:var(--cb-amber);"></span><span class="lg-label">Time concentrates here</span></div>
+                <div class="lg-item"><span class="lg-sw" style="background:var(--cb-red);"></span><span class="lg-label">Judgement / consistency</span></div>
+                <div class="lg-item"><span class="lg-sw" style="background:var(--cb-indigo);"></span><span class="lg-label">Shared process spine</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="v-body">
+            <p class="v-intro">A current-state map of how work flows through Link today, drawn from eight interviews. The insight is that almost every engineering deliverable runs the <strong>same four-step pattern</strong>. What differs is where the manual effort concentrates on each one. This is diagnostic only; recommendations sit separately in the Opportunity Matrix and Longlist.</p>
+            <div class="spine">
+              <div class="spine-label"><div class="sl-tag">The pattern behind every deliverable</div><div class="sl-name">Delivery Spine</div></div>
+              <div class="spine-steps">
+                <div class="spine-step"><div class="ss-num">01</div><div class="ss-name">Gather</div></div>
+                <div class="spine-step"><div class="ss-num">02</div><div class="ss-name">Draft</div></div>
+                <div class="spine-step"><div class="ss-num">03</div><div class="ss-name">Compile</div></div>
+                <div class="spine-step"><div class="ss-num">04</div><div class="ss-name">Review &amp; sign-off</div></div>
+              </div>
+            </div>
+            <div class="sec-tag">Engine 01 · Delivery — four deliverables, one shared spine, different friction on each</div>
+            <div class="delivs">
+              <div class="deliv"><div class="deliv-head"><div class="dh-name">Flood Risk Assessment</div><div class="dh-vol">8–10 days each · 15–20/mo</div></div><div class="deliv-body">
+                <div class="deliv-row hot amber"><span class="dr-step">Gather</span><span class="fd f-amber"></span><span class="dr-text">Web + PDF source data</span></div>
+                <div class="deliv-row hot amber"><span class="dr-step">Draft</span><span class="fd f-amber"></span><span class="dr-text">Heavy: template fill + data population</span></div>
+                <div class="deliv-row"><span class="dr-step">Compile</span><span class="fd f-clear"></span><span class="dr-text">PDF + appendices</span></div>
+                <div class="deliv-row hot red"><span class="dr-step">Review</span><span class="fd f-red"></span><span class="dr-text">No standard checklist</span></div>
+              </div></div>
+              <div class="deliv"><div class="deliv-head"><div class="dh-name">Designer Risk Assessment</div><div class="dh-vol">Half day each · 40–50/mo</div></div><div class="deliv-body">
+                <div class="deliv-row hot amber"><span class="dr-step">Gather</span><span class="fd f-amber"></span><span class="dr-text">Job info, every job</span></div>
+                <div class="deliv-row hot red"><span class="dr-step">Draft</span><span class="fd f-red"></span><span class="dr-text">Risk judgement — engineer-led</span></div>
+                <div class="deliv-row"><span class="dr-step">Compile</span><span class="fd f-clear"></span><span class="dr-text">Standard form</span></div>
+                <div class="deliv-row hot red"><span class="dr-step">Review</span><span class="fd f-red"></span><span class="dr-text">Professional sign-off</span></div>
+              </div></div>
+              <div class="deliv"><div class="deliv-head"><div class="dh-name">Ground Investigation Report</div><div class="dh-vol">5–7 days each · 2–3/mo<br><span style="opacity:.8">+ desk studies ~1 day, 5–6/mo</span></div></div><div class="deliv-body">
+                <div class="deliv-row hot amber"><span class="dr-step">Gather</span><span class="fd f-amber"></span><span class="dr-text">Heavy: PDF→AGS, lab-data merge</span></div>
+                <div class="deliv-row hot amber"><span class="dr-step">Draft</span><span class="fd f-amber"></span><span class="dr-text">Standard sections + interpretation</span></div>
+                <div class="deliv-row hot amber"><span class="dr-step">Compile</span><span class="fd f-amber"></span><span class="dr-text">Heavy: appendix assembly</span></div>
+                <div class="deliv-row hot red"><span class="dr-step">Review</span><span class="fd f-red"></span><span class="dr-text">Cross-section consistency</span></div>
+              </div></div>
+              <div class="deliv"><div class="deliv-head"><div class="dh-name">Structural Appraisal Report</div><div class="dh-vol">1–4 days each · 5–10/mo</div></div><div class="deliv-body">
+                <div class="deliv-row hot red"><span class="dr-step">Gather</span><span class="fd f-red"></span><span class="dr-text">Heavy: physical site visit, photos, paper notes</span></div>
+                <div class="deliv-row hot amber"><span class="dr-step">Draft</span><span class="fd f-amber"></span><span class="dr-text">Prescriptive stock-phrase sections</span></div>
+                <div class="deliv-row"><span class="dr-step">Compile</span><span class="fd f-clear"></span><span class="dr-text">PDF + markup</span></div>
+                <div class="deliv-row hot red"><span class="dr-step">Review</span><span class="fd f-red"></span><span class="dr-text">Director time — the bottleneck</span></div>
+              </div></div>
+            </div>
+            <div class="sec-tag">Engine 02 · Tender &amp; acquisition — runs the same Gather → Draft → Compile → Review pattern</div>
+            <div class="delivs" style="grid-template-columns:repeat(2,1fr);margin-bottom:26px;">
+              <div class="deliv"><div class="deliv-head"><div class="dh-name">Fee Proposals</div><div class="dh-vol">2 hrs–half day each · 40–50/mo firm-wide</div></div><div class="deliv-body">
+                <div class="deliv-row hot amber"><span class="dr-step">Gather</span><span class="fd f-amber"></span><span class="dr-text">Find a prior scheme to reuse — no central store</span></div>
+                <div class="deliv-row hot amber"><span class="dr-step">Draft</span><span class="fd f-amber"></span><span class="dr-text">Copy-paste a prior scheme, then redraft the bespoke sections</span></div>
+                <div class="deliv-row"><span class="dr-step">Compile</span><span class="fd f-clear"></span><span class="dr-text">PowerPoint assembly</span></div>
+                <div class="deliv-row"><span class="dr-step">Review</span><span class="fd f-clear"></span><span class="dr-text">Differentiation matters — "sets you apart"</span></div>
+              </div></div>
+              <div class="deliv"><div class="deliv-head"><div class="dh-name">Tender Specification Packs</div><div class="dh-vol">13 structures + 6 civils specs · ~1/mo (to validate)</div></div><div class="deliv-body">
+                <div class="deliv-row"><span class="dr-step">Gather</span><span class="fd f-clear"></span><span class="dr-text">Pull prior project pack</span></div>
+                <div class="deliv-row hot amber"><span class="dr-step">Draft</span><span class="fd f-amber"></span><span class="dr-text">Heavy: 95% standard, copy-paste-update, 1–2 days</span></div>
+                <div class="deliv-row hot amber"><span class="dr-step">Compile</span><span class="fd f-amber"></span><span class="dr-text">Manual PDF per tender + construction re-revs</span></div>
+                <div class="deliv-row hot red"><span class="dr-step">Review</span><span class="fd f-red"></span><span class="dr-text">Senior time at tender crunch</span></div>
+              </div></div>
+            </div>
+            <div class="layer">
+              <div class="layer-head"><div class="lh-name">Knowledge &amp; Standards — the layer beneath every deliverable</div><div class="lh-note">Not a step in the flow — it feeds all delivery and tender work</div></div>
+              <div class="layer-items">
+                <div class="layer-item"><div class="li-name"><span class="fd f-amber"></span>Finding precedent</div><div class="li-desc">230-folder archive searchable by file name only. 30 years of codes and articles, hard to surface by content. Every role hits this.</div></div>
+                <div class="layer-item"><div class="li-name"><span class="fd f-red"></span>Document control</div><div class="li-desc">ISO 19650 naming drifts across projects; superseded-file risk. A standards question, not a single task.</div></div>
+                <div class="layer-item"><div class="li-name"><span class="fd f-red"></span>Quality assurance</div><div class="li-desc">Drawing checklist is strong. Reports have no standardised checklist by report type — a standardisation opportunity, not a competence gap.</div></div>
+              </div>
+            </div>
+            <div class="sec-tag">Engines 03 &amp; 04 · Admin and finance — separate functions, separate owners</div>
+            <div class="admin-fin">
+              <div class="af-block"><div class="af-head"><div class="afh-name">Admin &amp; Compliance</div><div class="afh-who">Office &amp; HR — single owner</div></div><div class="af-body">
+                <div class="af-task"><span class="aft-dot f-amber"></span><div><div class="aft-name">Meeting minutes</div><div class="aft-detail">Handwritten live → typed up → chase sign-off. 2–3 hrs each, ~2/mo.</div></div></div>
+                <div class="af-task"><span class="aft-dot f-amber"></span><div><div class="aft-name">Supplier &amp; compliance forms</div><div class="aft-detail">Same data re-entered across Constructionline, CHAS, client portals. ~5/mo, up to hours each.</div></div></div>
+                <div class="af-task"><span class="aft-dot f-red"></span><div><div class="aft-name">Quarterly QMS audit</div><div class="aft-detail">Build spreadsheet → filter rows → check folder by folder → flag blank placeholder templates. ~3 hrs + director + engineer time.</div></div></div>
+              </div></div>
+              <div class="af-block"><div class="af-head"><div class="afh-name">Finance</div><div class="afh-who">Finance Manager — single owner, recruiting</div></div><div class="af-body">
+                <div class="af-task"><span class="aft-dot f-amber"></span><div><div class="aft-name">Accounts inbox triage</div><div class="aft-detail">10–20+ emails/day; handled by priority, slip risk; no auto-filing rules. 0.5–2 hrs/day.</div></div></div>
+                <div class="af-task"><span class="aft-dot f-amber"></span><div><div class="aft-name">Management-report commentary</div><div class="aft-detail">Handwritten in Word monthly; dashboards not presentation-ready.</div></div></div>
+                <div class="af-task"><span class="aft-dot f-clear"></span><div><div class="aft-name">Invoicing &amp; monitoring</div><div class="aft-detail">Inside the ERP go-live (~1 Aug 2026, Rob Gill). Out of scope here to avoid duplicating ERP.</div></div></div>
+              </div></div>
+            </div>
+          </div>
+          <div class="v-summary">
+            <div><div class="sc-label">Shared spine</div><div class="sc-value v-indigo">1</div><div class="sc-desc">Gather → Draft → Compile → Review runs across every deliverable</div></div>
+            <div><div class="sc-label">Delivery deliverables</div><div class="sc-value v-white">6</div><div class="sc-desc">FRA, DRA, GIR, structural reports, fee proposals, tender packs</div></div>
+            <div><div class="sc-label">Where time concentrates</div><div class="sc-value v-amber">Gather &amp; Draft</div><div class="sc-desc">Data-gathering and drafting carry most of the manual load</div></div>
+            <div><div class="sc-label">Untouched territory</div><div class="sc-value v-green">Open</div><div class="sc-desc">Engineering document production not yet AI-assisted</div></div>
+          </div>
+          <div class="v-footer"><div class="vf-left">Based on evidence from 8 stakeholder interviews. Opportunities are identified separately in the Opportunity Matrix and Opportunity Longlist.</div><div class="vf-right">CLEAR BUILD CONSULTING · CONFIDENTIAL</div></div>
+        </div>
+      </section>
+
+      <!-- ════════ PANEL 2 — MATRIX ════════ -->
+      <section class="panel">
+        <div class="card">
+          <div class="v-header">
+            <div class="v-header-meta">
+              <div><div class="vh-label">02 / 03 · OPPORTUNITY MATRIX</div><div class="vh-title">Where to Focus First <span class="draft">DRAFT</span></div><div class="vh-sub">Link Engineering Ltd · LE-AI-001 · 10 June 2026</div></div>
+              <div class="vh-right">
+                <div class="lg-item"><span class="lg-dot" style="background:var(--cb-blue-500);"></span><span class="lg-label">Quick Win (Wave 1)</span></div>
+                <div class="lg-item"><span class="lg-dot" style="background:var(--cb-purple);"></span><span class="lg-label">Higher-Value (Phase 2)</span></div>
+                <div class="lg-item"><span class="lg-dot" style="background:var(--cb-slate-500);"></span><span class="lg-label">To validate</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="guardrail">
+            <div class="g-title">The principle that shapes this matrix</div>
+            <div class="g-text">AI takes the donkey work, not the judgement. Nothing here removes or dilutes an engineer's professional responsibility. The aim is to free the routine effort so chartered engineers focus their judgement where it matters. Opportunities that touch engineering decisions sit in Phase 2, where that trust is built first.</div>
+          </div>
+          <div class="mx-body">
+            <div class="plot-wrap">
+              <p class="plot-intro">Each bubble is a tool or task opportunity, plotted by business impact and effort to implement. Larger bubbles carry more released capacity. <strong>Quick Wins</strong> (bottom-right) are judgement-light: AI does the gathering and drafting, the engineer keeps the call. <strong>Higher-Value</strong> items (top-right) are worth doing but touch engineering judgement, so they follow once trust and governance are in place. This is a DRAFT for direction; positions firm up after tool research.</p>
+              <div class="plot-area">
+                <div class="y-axis-label">Effort to Implement</div>
+                <div class="plot">
+                  <div class="qt-qw"></div><div class="qt-p2"></div><div class="dv"></div><div class="dh"></div>
+                  <span class="tk yt">&uarr; HIGH</span><span class="tk yb">&darr; LOW</span>
+                  <div class="quad q-p2">Higher-Value &middot; Phase 2</div>
+                  <div class="quad q-lp">Low Priority</div>
+                  <div class="quad q-mn">Minor Wins</div>
+                  <div class="quad q-qw">Quick Wins &#9733;</div>
+                  <div class="bub dn" style="left:64%;top:88%;width:50px;height:50px;"><span class="bid">O-19</span></div>
+                  <div class="bub dn" style="left:62%;top:72%;width:44px;height:44px;"><span class="bid">O-10</span></div>
+                  <div class="bub dn" style="left:75%;top:82%;width:62px;height:62px;"><span class="bid">O-05</span></div>
+                  <div class="bub dn" style="left:86%;top:74%;width:64px;height:64px;"><span class="bid">O-03</span></div>
+                  <div class="bub dn" style="left:83%;top:83%;width:52px;height:52px;"><span class="bid">O-02</span></div>
+                  <div class="bub dn" style="left:78%;top:62%;width:48px;height:48px;"><span class="bid">O-17</span></div>
+                  <div class="bub p2" style="left:80%;top:34%;width:60px;height:60px;"><span class="bid">O-16</span></div>
+                  <div class="bub p2" style="left:90%;top:22%;width:50px;height:50px;"><span class="bid">O-08</span></div>
+                  <div class="bub dl" style="left:42%;top:56%;width:42px;height:42px;"><span class="bid">O-06</span></div>
+                  <div class="bub dl" style="left:30%;top:44%;width:34px;height:34px;"><span class="bid">O-04</span></div>
+                  <div class="bub dl" style="left:34%;top:78%;width:40px;height:40px;"><span class="bid">+8</span></div>
+                </div>
+                <div class="xtk"><span>&larr; LOW</span><span>HIGH &rarr;</span></div>
+                <div class="xal">Business Impact</div>
+              </div>
+            </div>
+            <div class="mx-side">
+              <div class="sb-h qw">Quick Wins &mdash; Wave 1 (judgement-light)</div>
+              <div class="oc dn"><div class="oc-top"><span class="oc-id">O-05</span><span class="oc-name">DRA assisted generation</span></div><div class="oc-meta">Every job, 40–50/mo. AI gathers and pre-populates; the engineer makes the risk call.</div></div>
+              <div class="oc dn"><div class="oc-top"><span class="oc-id">O-03</span><span class="oc-name">FRA assisted drafting</span></div><div class="oc-meta">15–20/mo, 8–10 days each. Template fill + source-data population.</div></div>
+              <div class="oc dn"><div class="oc-top"><span class="oc-id">O-19</span><span class="oc-name">Knowledge archive search</span></div><div class="oc-meta">Pure retrieval, touches no judgement. 230-folder archive, content-searchable.</div></div>
+              <div class="oc dn"><div class="oc-top"><span class="oc-id">O-02</span><span class="oc-name">Central proposal library</span></div><div class="oc-meta">No central store today; precedent search recurs across every role.</div></div>
+              <div class="oc dn"><div class="oc-top"><span class="oc-id">O-17</span><span class="oc-name">Tender spec pack update</span></div><div class="oc-meta">13+6 specs, 95% standard, copy-paste-update. Eats senior time at tender crunch.</div></div>
+              <div class="oc dn"><div class="oc-top"><span class="oc-id">O-10</span><span class="oc-name">Meeting minutes</span></div><div class="oc-meta">Effort depends on the platform call (Fireflies / Notion vs custom). Often a decision, not a build.</div></div>
+              <div class="sb-h p2">Higher-Value &mdash; Phase 2 (judgement-heavy)</div>
+              <div class="oc p2"><div class="oc-top"><span class="oc-id">O-16</span><span class="oc-name">Structural report drafting</span></div><div class="oc-meta">5–10/mo, 1–4 days. High value, but site capture + the judgement layer need trust built first.</div></div>
+              <div class="oc p2"><div class="oc-top"><span class="oc-id">O-08</span><span class="oc-name">QA consistency checker</span></div><div class="oc-meta">Maximise checking without removing the engineer's responsibility. Define the standard, then build.</div></div>
+              <div class="sb-h tv">To validate (single-source)</div>
+              <div class="tv-list"><b>O-04</b> report compilation · <b>O-06</b> geo data tooling · <b>O-07</b> s278 responses · <b>O-09</b> BIM naming · <b>O-11</b> supplier forms · <b>O-12</b> QMS audit · <b>O-13</b> inbox triage · <b>O-14</b> mgmt commentary · <b>O-15</b> resourcing · <b>O-18</b> doc control. Full set in the Opportunity Longlist.</div>
+            </div>
+          </div>
+          <div class="v-summary">
+            <div><div class="sc-label">Wave 1 Quick Wins</div><div class="sc-value v-blue">6</div><div class="sc-desc">Judgement-light, high-impact, deliverable now</div></div>
+            <div><div class="sc-label">Higher-Value (Phase 2)</div><div class="sc-value v-purple">2</div><div class="sc-desc">High value, sequenced behind trust + governance</div></div>
+            <div><div class="sc-label">Total opportunities</div><div class="sc-value v-white">19 + 4</div><div class="sc-desc">19 tool/task flags + 4 foundations</div></div>
+            <div><div class="sc-label">To validate</div><div class="sc-value v-amber">10</div><div class="sc-desc">Single-source ideas needing your steer</div></div>
+          </div>
+          <div class="v-footer"><div class="vf-left">DRAFT for the joint steer-check. Bubble positions are indicative and firm up after tool research. Foundations (E-01–E-04) sit beneath every item on this matrix — see the Opportunity Longlist. Based on evidence from 8 stakeholder interviews.</div><div class="vf-right">CLEAR BUILD CONSULTING · CONFIDENTIAL</div></div>
+        </div>
+      </section>
+
+      <!-- ════════ PANEL 3 — LONGLIST ════════ -->
+      <section class="panel">
+        <div class="card">
+          <div class="v-header">
+            <div class="v-header-meta">
+              <div><div class="vh-label">03 / 03 · OPPORTUNITY LONGLIST</div><div class="vh-title">Every Opportunity I Found <span class="draft">DRAFT</span></div><div class="vh-sub">Link Engineering Ltd · LE-AI-001 · 10 June 2026</div></div>
+              <div class="vh-right txt">The full set, before I narrow. Your steer at this stage decides what carries into the shortlist and the detailed work.</div>
+            </div>
+          </div>
+          <div class="v-body">
+            <p class="v-intro">This is the complete longlist of opportunities I surfaced across eight interviews, foundations and tool or task ideas alike. Like a scheme moving from <strong>feasibility</strong> through <strong>options assessment</strong> to a <strong>preferred design</strong>, the point of this stage is breadth: see everything, then narrow with intent. Nothing here is a final recommendation. Items are tagged by how strongly the evidence supports them, and by which phase they fit, so you can tell a firm-wide pattern from one person's good idea. Tell me what to pull forward, hold, or drop.</p>
+            <div class="funnel">
+              <div class="fst fs1"><div class="fs-num">Stage 1 · You are here</div><div class="fs-name">Longlist</div><div class="fs-desc">23 opportunities, everything found, assessed by evidence</div></div>
+              <div class="f-arrow">&rarr;</div>
+              <div class="fst fs2"><div class="fs-num">Stage 2 · Next</div><div class="fs-name">Assessed &amp; researched</div><div class="fs-desc">Tool research and ROI on the strongest candidates</div></div>
+              <div class="f-arrow">&rarr;</div>
+              <div class="fst fs3"><div class="fs-num">Stage 3 · Report</div><div class="fs-name">Preferred programme</div><div class="fs-desc">Wave 1 Quick Wins, Phase 2, and a phased roadmap</div></div>
+            </div>
+            <div class="tier-head"><span class="tier-tag t1">Tier 1</span><span class="tier-title">Foundations, the enabling layer</span><span class="tier-sub">Makes every tool win stick firm-wide. An operating system, not a single task.</span></div>
+            <table>
+              <thead><tr><th style="width:62px;">Ref</th><th style="width:250px;">Opportunity</th><th>What it is and why it matters</th></tr></thead>
+              <tbody>
+                <tr><td class="eid">E-01</td><td class="oname">Training &amp; AI-literacy levelling</td><td>The team spans a wide range, from staff building their own automation to some still taking minutes on paper. Bring everyone to a shared baseline. Your AI policy already commits to this training; this delivers it.</td></tr>
+                <tr><td class="eid">E-02</td><td class="oname">Operationalise your AI policy</td><td>You have a sound Revision 1 policy. The gap is turning its intent into working practice: the audit trail it asks for, the report-QA checklist it assumes, a clear tool-approval route. Strengthen what exists, do not start over.</td></tr>
+                <tr><td class="eid">E-03</td><td class="oname">SOPs &amp; standardisation</td><td>Capture what the internal team has already built, plus the recommended ways of working, as repeatable standard procedures, using a proven linked-skills method so good practice is not locked in one person's head.</td></tr>
+                <tr><td class="eid">E-04</td><td class="oname">Stepped test-and-verify governance</td><td>A clear pilot-then-rollout gate: prove each tool in one team, settle the checks, then scale. Operationalises your own risk tiers (low, medium, high, prohibited) so adoption is safe and consistent.</td></tr>
+              </tbody>
+            </table>
+            <p class="note">Foundations need an owner with a mandate. Your policy names an AI Sponsor at director level, the right place for accountability. What sits underneath, and is not yet resourced, is the day-to-day implementation capacity to deliver E-01 to E-04. I will return to how that capacity is best provided.</p>
+            <div class="tier-head"><span class="tier-tag t2">Tier 2</span><span class="tier-title">Tool &amp; task opportunities</span><span class="tier-sub">19 opportunities, grouped by strength of evidence and phase</span></div>
+            <div class="grp">Strongly evidenced &mdash; raised across multiple roles</div>
+            <table>
+              <thead><tr><th style="width:58px;">Ref</th><th style="width:230px;">Opportunity</th><th>Where the time goes</th><th style="width:150px;">Evidence</th></tr></thead>
+              <tbody>
+                <tr><td class="oid">O-02</td><td class="oname">Central proposal / precedent library<span class="ph ph-w1">Wave 1</span></td><td>No central store; staff hunt for prior schemes to reuse, minutes to an hour each time.</td><td><span class="ev ev-strong">Strongly evidenced &middot; 4 roles</span></td></tr>
+                <tr><td class="oid">O-03</td><td class="oname">FRA assisted drafting<span class="ph ph-w1">Wave 1</span></td><td>Flood Risk Assessments, 15–20/mo, 8–10 days each. Template fill plus pulling source data from web and PDFs.</td><td><span class="ev ev-strong">Strongly evidenced &middot; 3 + internal team</span></td></tr>
+                <tr><td class="oid">O-05</td><td class="oname">DRA assisted generation<span class="ph ph-w1">Wave 1</span></td><td>Designer Risk Assessment on every job, 40–50/mo, half a day each. AI gathers and pre-populates; the engineer keeps the risk judgement.</td><td><span class="ev ev-strong">Strongly evidenced &middot; 2 + internal team</span></td></tr>
+                <tr><td class="oid">O-08</td><td class="oname">QA checklist / consistency checker<span class="ph ph-p2">Phase 2</span></td><td>No standard report checklist; review is judgement-led and director time is the constraint. Maximise checking without removing the engineer's responsibility.</td><td><span class="ev ev-strong">Strongly evidenced &middot; 4 roles</span></td></tr>
+                <tr><td class="oid">O-16</td><td class="oname">Structural appraisal report drafting<span class="ph ph-p2">Phase 2</span></td><td>1–4 days/report, 5–10/mo. Physical site capture plus prescriptive sections; the judgement layer needs trust built first.</td><td><span class="ev ev-strong">Strongly evidenced &middot; structures + internal team</span></td></tr>
+                <tr><td class="oid">O-19</td><td class="oname">Knowledge archive search<span class="ph ph-w1">Wave 1</span></td><td>230-folder archive, 30 years of codes and articles, searchable by file name only. Pure retrieval, touches no engineering judgement.</td><td><span class="ev ev-strong">Strongly evidenced &middot; validated by internal team</span></td></tr>
+              </tbody>
+            </table>
+            <div class="grp">Evidenced &mdash; clear pattern, raised by fewer roles</div>
+            <table>
+              <thead><tr><th style="width:58px;">Ref</th><th style="width:230px;">Opportunity</th><th>Where the time goes</th><th style="width:150px;">Evidence</th></tr></thead>
+              <tbody>
+                <tr><td class="oid">O-10</td><td class="oname">Meeting minutes generation<span class="ph ph-w1">Wave 1</span></td><td>2–3 hrs each, some handwritten; the same systemisation gap noted by three people. Often a platform decision (Fireflies or Notion) rather than a build.</td><td><span class="ev ev-evid">Evidenced &middot; 3 roles</span></td></tr>
+                <tr><td class="oid">O-17</td><td class="oname">Tender spec pack auto-update<span class="ph ph-w1">Wave 1</span></td><td>13 + 6 specs per pack, 95% standard, 1–2 days each, repeated at construction stage for small changes. Eats senior time at tender crunch.</td><td><span class="ev ev-evid">Evidenced &middot; structures + internal team</span></td></tr>
+                <tr><td class="oid">O-01</td><td class="oname">Fee proposal assisted drafting</td><td>Bespoke PowerPoint proposals reusing prior work, 40–50/mo firm-wide, 2 hrs–half day each.</td><td><span class="ev ev-evid">Evidenced &middot; 2 roles</span></td></tr>
+                <tr><td class="oid">O-04</td><td class="oname">Report &amp; appendix compilation</td><td>Manual PDF assembly of reports plus appendices; spreadsheet-to-Word for technical notes.</td><td><span class="ev ev-evid">Evidenced &middot; 3 roles</span></td></tr>
+                <tr><td class="oid">O-06</td><td class="oname">Geotechnical data extraction + lab tooling</td><td>PDF-to-AGS extraction, lab-data merge, test scheduling, desk studies. Deep single-source detail.</td><td><span class="ev ev-evid">Evidenced &middot; geo lead, deep</span></td></tr>
+              </tbody>
+            </table>
+            <div class="grp em">&#9888; Emerging &mdash; single-source, to validate with you</div>
+            <p class="note" style="margin-bottom:10px;">Each of these came from one person. They may be firm-wide opportunities, niche, or already solved by your internal team. I have kept them in so nothing is lost; your steer tells me which are real.</p>
+            <table>
+              <thead><tr><th style="width:58px;">Ref</th><th style="width:230px;">Opportunity</th><th>Where the time goes</th><th style="width:150px;">Evidence</th></tr></thead>
+              <tbody>
+                <tr><td class="oid">O-07</td><td class="oname">Section 278 comment-response assistant</td><td>Read, contextualise, respond, revise cycle on council comments per highways scheme.</td><td><span class="ev ev-emerging">&#9888; Emerging &middot; 1 role</span></td></tr>
+                <tr><td class="oid">O-09</td><td class="oname">BIM (ISO 19650) file-naming checker</td><td>Inconsistent naming, manual rename and backtracking.</td><td><span class="ev ev-emerging">&#9888; Emerging &middot; 1 role</span></td></tr>
+                <tr><td class="oid">O-11</td><td class="oname">Supplier / compliance form auto-fill</td><td>Constructionline, CHAS portals; ~5/mo, same data re-entered, single owner.</td><td><span class="ev ev-emerging">&#9888; Emerging &middot; 1 role</span></td></tr>
+                <tr><td class="oid">O-12</td><td class="oname">QMS quarterly audit automation</td><td>~3 hrs plus director and engineer time, manual folder-by-folder checks.</td><td><span class="ev ev-emerging">&#9888; Emerging &middot; 1 role</span></td></tr>
+                <tr><td class="oid">O-13</td><td class="oname">Accounts inbox triage / filing</td><td>0.5–2 hrs/day; priority-slip risk. Check against ERP scope.</td><td><span class="ev ev-emerging">&#9888; Emerging &middot; 1 role</span></td></tr>
+                <tr><td class="oid">O-14</td><td class="oname">Management-report auto-commentary</td><td>Handwritten Word commentary monthly; dashboards not presentation-ready.</td><td><span class="ev ev-emerging">&#9888; Emerging &middot; 1 role</span></td></tr>
+                <tr><td class="oid">O-15</td><td class="oname">Project-resourcing prompt layer</td><td>Manual weekly allocation and briefing "heartbeat". Overlaps ERP and PM, a watch item.</td><td><span class="ev ev-emerging">&#9888; Emerging &middot; watch</span></td></tr>
+                <tr><td class="oid">O-18</td><td class="oname">Incoming drawing / document control</td><td>Manual email-to-folder save and supersede; ~0.5 hrs/week. Likely Phase 2.</td><td><span class="ev ev-emerging">&#9888; Emerging &middot; 1 role</span></td></tr>
+              </tbody>
+            </table>
+            <p class="note">Excluded by design: manual invoicing and finance or PM monitoring sit inside your ERP go-live (~1 Aug 2026) and are not flagged here, to avoid recommending anything that duplicates ERP scope.</p>
+          </div>
+          <div class="v-summary">
+            <div><div class="sc-label">Total on the longlist</div><div class="sc-value v-white">23</div><div class="sc-desc">4 foundations plus 19 tool or task opportunities</div></div>
+            <div><div class="sc-label">Wave 1 Quick Wins</div><div class="sc-value v-blue">6</div><div class="sc-desc">Judgement-light, deliverable now</div></div>
+            <div><div class="sc-label">Foundations</div><div class="sc-value v-amber">4</div><div class="sc-desc">Enabling layer beneath the tool wins</div></div>
+            <div><div class="sc-label">To validate</div><div class="sc-value v-amber">10</div><div class="sc-desc">Single-source ideas needing your steer</div></div>
+          </div>
+          <div class="v-footer"><div class="vf-left">DRAFT longlist issued for the joint steer-check, alongside the Operations Canvas and Opportunity Matrix. Evidence tags reflect how many of the 8 interviews raised each item, not a judgement of value. No ROI figures at this stage; those follow tool research on the shortlist.</div><div class="vf-right">CLEAR BUILD CONSULTING · CONFIDENTIAL</div></div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <div class="nav">
+    <button class="nav-btn" id="prev" aria-label="Previous">&larr; Prev</button>
+    <div class="dots" id="dots">
+      <button class="dot active" data-i="0"><span class="dot-mark"></span><span class="dot-label">Ops Canvas</span></button>
+      <button class="dot" data-i="1"><span class="dot-mark"></span><span class="dot-label">Opportunity Matrix</span></button>
+      <button class="dot" data-i="2"><span class="dot-mark"></span><span class="dot-label">Longlist</span></button>
+    </div>
+    <button class="nav-btn" id="next" aria-label="Next">Next &rarr;</button>
+  </div>
+  <div class="hint">&larr; &rarr; arrow keys to move</div>
+  <div class="counter"><b id="cur">1</b> / 3</div>
+</div>
+
+<script>
+(function(){
+  var i=0, n=3;
+  var track=document.getElementById('track');
+  var dots=Array.prototype.slice.call(document.querySelectorAll('.dot'));
+  var prev=document.getElementById('prev'), next=document.getElementById('next'), cur=document.getElementById('cur');
+  function go(k){
+    i=Math.max(0,Math.min(n-1,k));
+    track.style.transform='translateX(-'+(i*100)+'%)';
+    dots.forEach(function(d,idx){d.classList.toggle('active',idx===i);});
+    prev.disabled=(i===0); next.disabled=(i===n-1); cur.textContent=(i+1);
+    var panels=document.querySelectorAll('.panel'); if(panels[i]) panels[i].scrollTop=0;
+  }
+  prev.onclick=function(){go(i-1);}; next.onclick=function(){go(i+1);};
+  dots.forEach(function(d){d.onclick=function(){go(parseInt(d.dataset.i,10));};});
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'||e.key==='PageDown'){go(i+1);}
+    else if(e.key==='ArrowLeft'||e.key==='PageUp'){go(i-1);}
+    else if(e.key==='Home'){go(0);} else if(e.key==='End'){go(n-1);}
+  });
+  go(0);
+})();
+</script>
+<script>window.CB_COMMENTS={engagement:"LE-AI-001",artefact:"LE-AI-001-steer-check",submit:{mode:"relay",url:"/api/comment"},token:new URLSearchParams(location.search).get("t")||""};</script>
+<script src="/comment-layer.js" defer></script>
+</body>
+</html>
