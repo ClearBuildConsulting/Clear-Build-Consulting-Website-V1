@@ -8,7 +8,7 @@
 //   CB_SITE_ID, CB_LIST_ID, CB_TOKEN_SECRET
 // Optional: CB_TEAMS_WEBHOOK, CB_ALLOWED_ANCHORS (comma list; else pattern check)
 
-const crypto = require("crypto");
+import crypto from "node:crypto";
 
 const ANCHOR_RE = /^(?:[OE]-\d{2}|PANEL-\d+|DOC)$/;     // H1 shape guard
 const MAX_BODY = 4000, MAX_QUOTE = 1000;
@@ -62,7 +62,7 @@ async function readBody(req){
   });
 }
 
-module.exports = async function handler(req, res){
+export default async function handler(req, res){
   if(req.method !== "POST") return res.status(405).json({error:"method"});
   let p; try{ p = await readBody(req); }catch(_){ return res.status(400).json({error:"bad json"}); }
 
